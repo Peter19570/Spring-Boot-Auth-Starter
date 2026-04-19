@@ -1,0 +1,88 @@
+package com.example.projectname.microservice.authentication.service;
+
+import com.example.projectname.microservice.authentication.dto.internal.AuditEventResponse;
+import com.example.projectname.microservice.authentication.enums.AuditAction;
+import com.example.projectname.microservice.authentication.exception.InvalidTokenException;
+import com.example.projectname.microservice.authentication.exception.ResourceNotFoundException;
+import com.example.projectname.microservice.authentication.model.User;
+import com.example.projectname.microservice.authentication.repo.RefreshTokenRepo;
+import com.example.projectname.microservice.authentication.repo.UserRepo;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.Instant;
+import java.util.UUID;
+
+/**
+ * Handles the multi-step secure deletion of a user account.
+ * Uses a soft-delete approach to allow for data recovery/auditing.
+ */
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class BaseUserService {
+
+    private final UserRepo userRepository;
+    private final RefreshTokenRepo refreshTokenRepo;
+    private final PasswordEncoder passwordEncoder;
+    private final EmailService emailService;
+    private final InMemoryOtpService otpService; // Assuming you have an OTP logic
+    private final ApplicationEventPublisher eventPublisher;
+    private final HttpServletRequest request;
+
+    /**
+     * Initiates deletion by sending a verification code.
+     */
+    public void initiateDeletion(User user) {
+        String code = otpService.generateOtp(user.getEmail());
+        emailService.sendAccountDeletionCode(user.getEmail(), code);
+        log.info("Deletion OTP sent to user: {}", user.getEmail());
+    }
+
+    /**
+     * Performs the soft delete after validating password and OTP.
+     */
+    @Transactional
+    public void confirmSoftDelete(UUID userId, String password, String otp) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        // 1. Password Challenge (Only if they have one)
+        if (user.getPassword() != null) {
+            if (password == null || !passwordEncoder.matches(password, user.getPassword())) {
+                throw new BadCredentialsException("Invalid password provided for account deletion.");
+            }
+        }
+
+        // 2. OTP Challenge
+        if (!otpService.validateOtp(user.getEmail(), otp.replaceAll("\\s+", ""))) {
+            throw new InvalidTokenException("Invalid or expired deletion code.");
+        }
+
+        // 3. The Soft Delete
+        user.setDeletedAt(Instant.now());
+
+        // 4. Revocation: Kick them out of all devices
+        refreshTokenRepo.deleteByUser(user);
+
+        userRepository.save(user);
+        log.warn("User {} soft-deleted at {}", userId, user.getDeletedAt());
+        publishAudit(user.getId(), AuditAction.ACCOUNT_SOFT_DELETE, null);
+    }
+
+    private void publishAudit(UUID userId, AuditAction action, String metadata) {
+        eventPublisher.publishEvent(new AuditEventResponse(
+                userId,
+                action,
+                request.getRemoteAddr(),
+                request.getHeader("User-Agent"),
+                metadata
+        ));
+    }
+}
