@@ -33,7 +33,7 @@ build/
 .vscode/
 
 ### Logs
-.logs/
+.logs
 
 ### Environment Variables
 .env
