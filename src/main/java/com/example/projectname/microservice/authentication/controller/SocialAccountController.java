@@ -22,9 +22,7 @@ public class SocialAccountController {
             @AuthenticationPrincipal CustomUserPrincipal principal,
             @PathVariable String provider) {
 
-        // We pass the current user from the SecurityContext
         socialService.unlinkProvider(principal.user().getId(), provider.toUpperCase());
-
         return ResponseEntity.noContent().build();
     }
 }

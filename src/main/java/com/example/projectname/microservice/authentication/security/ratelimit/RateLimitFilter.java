@@ -24,9 +24,9 @@ public class RateLimitFilter extends OncePerRequestFilter {
     private final Map<String, Bucket> buckets = new ConcurrentHashMap<>();
 
     private Bucket createNewBucket() {
-        // Greedy refill: 5 tokens per minute, but added bit-by-bit
+        // Greedy refill: 10 tokens per minute, but added bit-by-bit
         // 1 token is effectively added every 12 seconds.
-        Refill refill = Refill.greedy(5, Duration.ofMinutes(1));
+        Refill refill = Refill.greedy(10, Duration.ofMinutes(1));
         Bandwidth limit = Bandwidth.classic(5, refill);
 
         return Bucket.builder()
@@ -50,9 +50,8 @@ public class RateLimitFilter extends OncePerRequestFilter {
                 // Token consumed, move to the next filter
                 filterChain.doFilter(request, response);
             } else {
-                // No tokens left!
                 log.warn("Rate limit exceeded for IP: {}", ip);
-                response.setStatus(429); // Too Many Requests
+                response.setStatus(429);
                 response.setContentType("application/json");
                 response.getWriter().write("{\"msg\": \"Too many attempts. Please try again in a minute.\"}");
             }

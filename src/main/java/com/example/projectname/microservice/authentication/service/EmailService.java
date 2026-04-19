@@ -149,7 +149,6 @@ public class EmailService {
             helper.setText(body, true);
             mailSender.send(message);
         } catch (MessagingException e) {
-            // In prod, log this properly!
             log.error("Failed to send verification email to {}: {}", to, e.getMessage());
             throw new MailSenderException("Failed to send email");
         }

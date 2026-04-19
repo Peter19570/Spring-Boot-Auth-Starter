@@ -29,7 +29,6 @@ public class SocialAccountService {
     @Transactional
     public void unlinkProvider(UUID userId, String provider) {
         // 1. Fetch a FRESH user with their social accounts joined
-        // We use the 'WithSocialAccounts' method we created earlier to avoid LazyInit
         User user = userRepository.findByIdWithSocialAccounts(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
@@ -44,11 +43,11 @@ public class SocialAccountService {
         int socialCount = user.getSocialAccounts().size();
 
         if (!hasPassword && socialCount <= 1) {
-            throw new IllegalStateException("Cannot unlink your only login method. Please set a password first.");
+            throw new IllegalStateException(
+                    "Cannot unlink your only login method. Please set a password first.");
         }
 
         // 4. Perform the removal
-        // Important: Remove from the parent list AND delete from the repo
         user.getSocialAccounts().remove(accountToUnlink);
         socialAccountRepo.delete(accountToUnlink);
 

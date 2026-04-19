@@ -90,7 +90,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(allowedOrigins);           // explicit list, no wildcard
+        config.setAllowedOrigins(allowedOrigins);
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         config.setAllowedHeaders(List.of(
                 "Authorization",
@@ -112,10 +112,7 @@ public class SecurityConfig {
         return new OidcUserService() {
             @Override
             public OidcUser loadUser(OidcUserRequest userRequest) throws OAuth2AuthenticationException {
-                // Load the default OIDC user (idToken, claims, etc.)
                 OidcUser oidcUser = super.loadUser(userRequest);
-
-                // Pass it to your unified processing logic
                 return customOAuth2UserService.processUser(userRequest, oidcUser);
             }
         };

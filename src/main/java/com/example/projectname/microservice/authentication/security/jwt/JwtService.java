@@ -40,12 +40,10 @@ public class JwtService {
                 .toList();
 
         claims.put("roles", roles);
-        // Convert Duration to long (milliseconds) for the helper method
         return createToken(claims, userDetails.getUsername(), accessTokenExpiration.toMillis());
     }
 
     public String generateRefreshToken(UserDetails userDetails) {
-        // Convert Duration to long (milliseconds) here too
         return createToken(new HashMap<>(), userDetails.getUsername(), refreshTokenExpiration.toMillis());
     }
 

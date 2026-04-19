@@ -32,7 +32,7 @@ public class BaseUserService {
     private final RefreshTokenRepo refreshTokenRepo;
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
-    private final InMemoryOtpService otpService; // Assuming you have an OTP logic
+    private final InMemoryOtpService otpService;
     private final ApplicationEventPublisher eventPublisher;
     private final HttpServletRequest request;
 

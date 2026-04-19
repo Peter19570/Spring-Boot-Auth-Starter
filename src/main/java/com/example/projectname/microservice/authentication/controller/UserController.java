@@ -32,7 +32,6 @@ public class UserController {
     public ResponseEntity<Void> confirmDelete(
             @AuthenticationPrincipal CustomUserPrincipal principal,
             @RequestBody AccountDeletionRequest request) {
-
         baseUserService.confirmSoftDelete(
                 principal.user().getId(),
                 request.password(),

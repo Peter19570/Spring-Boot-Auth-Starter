@@ -75,7 +75,7 @@ public class AuthService {
         User user = new User();
         user.setEmail(request.email());
         user.setPassword(passwordEncoder.encode(request.password()));
-        // Note: role defaults to USER in your entity definition
+        // Set role here if I got a role-based system...
 
         userRepository.save(user);
         log.info("Successfully registered new baseUser: {}", request.email());
@@ -84,9 +84,9 @@ public class AuthService {
         String rawToken = UUID.randomUUID().toString();
 
         EmailVerificationToken verificationToken = new EmailVerificationToken();
-        verificationToken.setUser(user); // [cite: 24]
-        verificationToken.setTokenHash(hashToken(rawToken)); // [cite: 25]
-        verificationToken.setExpiresAt(Instant.now().plus(Duration.ofDays(1))); // [cite: 26]
+        verificationToken.setUser(user);
+        verificationToken.setTokenHash(hashToken(rawToken));
+        verificationToken.setExpiresAt(Instant.now().plus(Duration.ofDays(1)));
 
         emailVerificationTokenRepo.save(verificationToken);
 
@@ -190,7 +190,7 @@ public class AuthService {
 
     /**
      * Logs the baseUser out by revoking the specific refresh token.
-     * @param refreshToken The token to invalidate
+     * @param refreshToken The token to invalidate, I also configured the logout in spring security so this is low-key redundant, buh yah im keeping it...
      */
     @Transactional
     public void logout(String refreshToken, User user) {
@@ -212,9 +212,9 @@ public class AuthService {
                 .orElseThrow(() -> new InvalidTokenException("Invalid or expired verification token"));
 
         // 2. Mark token as used and verify the baseUser
-        token.setUsed(true); // [cite: 26]
+        token.setUsed(true);
         User user = token.getUser();
-        user.setEmailVerified(true); //
+        user.setEmailVerified(true);
 
         userRepository.save(user);
         publishAudit(user.getId(), AuditAction.EMAIL_VERIFIED, null);
@@ -318,7 +318,6 @@ public class AuthService {
             log.info("Password reset link generated for user: {}", user.getId());
 
         }, () -> {
-            // Log for monitoring, but API remains silent
             log.warn("Password reset requested for non-existent email: {}", request.email());
         });
     }
@@ -337,7 +336,7 @@ public class AuthService {
                 .filter(t -> !t.isUsed() && t.getExpiresAt().isAfter(Instant.now()))
                 .orElseThrow(() -> {
                     log.warn("Password reset failed: Invalid or expired token hash {}", hashedToken);
-                    return new RuntimeException("Invalid or expired reset token");
+                    return new InvalidTokenException("Invalid or expired reset token");
                 });
 
         User user = token.getUser();
@@ -347,10 +346,8 @@ public class AuthService {
         user.setLocked(false);
         user.setFailedLoginAttempts(0);
         user.setLockedUntil(null);
-        // If they can reset via email, they have effectively verified their email
         user.setEmailVerified(true);
 
-        // 4. THE NUCLEAR OPTION: Revoke all refresh tokens
         // This uses the custom query we added to the RefreshTokenRepository
         refreshTokenRepository.revokeAllByUserId(user.getId());
         log.info("All active sessions revoked for baseUser: {}", user.getEmail());

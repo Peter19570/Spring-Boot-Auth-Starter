@@ -3,10 +3,6 @@ package com.example.projectname.microservice.authentication.dto.request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-/**
- * Data Transfer Object for confirming account deletion.
- * Includes credentials and the one-time verification code.
- */
 public record AccountDeletionRequest(
         String password,
 

@@ -79,13 +79,12 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
                            String value, long maxAgeInSeconds, String tokenPath) {
         ResponseCookie cookie = ResponseCookie.from(name, value)
                 .httpOnly(true)
-                .secure(true)    // Must be true for SameSite=None
+                .secure(true)
                 .path(tokenPath)
                 .maxAge(maxAgeInSeconds)
-                .sameSite("Lax") // Use "Lax" for standard redirects, "None" for cross-site if needed
+                .sameSite("Lax")
                 .build();
 
-        // ResponseCookie isn't a standard Servlet Cookie, so we add it as a header
         response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
     }
 

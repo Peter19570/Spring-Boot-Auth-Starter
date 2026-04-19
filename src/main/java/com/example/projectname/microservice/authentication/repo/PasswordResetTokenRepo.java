@@ -12,7 +12,4 @@ import java.util.UUID;
 public interface PasswordResetTokenRepo extends JpaRepository<PasswordResetToken, UUID> {
 
     Optional<PasswordResetToken> findByTokenHash(String tokenHash);
-
-    // clean up old tokens for a baseUser before issuing a new one
-    void deleteAllByUser(User user);
 }

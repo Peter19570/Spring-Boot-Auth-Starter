@@ -8,7 +8,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.Executor;
 
 @Configuration
-@EnableAsync // This turns on the @Async functionality
+@EnableAsync
 public class AsyncConfig {
 
     @Bean(name = "emailExecutor")

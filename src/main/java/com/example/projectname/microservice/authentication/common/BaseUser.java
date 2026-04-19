@@ -18,11 +18,11 @@ public class BaseUser extends BaseEntity {
     private String email;
 
     @Column
-    private String password; // nullable — OAuth users have no password
+    private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private UserRole role = UserRole.USER; // default so you never forget to set it
+    private UserRole role = UserRole.USER;
 
     @Column(nullable = false)
     private boolean emailVerified = false;

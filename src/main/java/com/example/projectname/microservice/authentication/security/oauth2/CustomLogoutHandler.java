@@ -1,7 +1,9 @@
 package com.example.projectname.microservice.authentication.security.oauth2;
 
 import com.example.projectname.microservice.authentication.dto.internal.AuditEventResponse;
+import com.example.projectname.microservice.authentication.dto.internal.CustomUserPrincipal;
 import com.example.projectname.microservice.authentication.enums.AuditAction;
+import com.example.projectname.microservice.authentication.model.User;
 import com.example.projectname.microservice.authentication.repo.RefreshTokenRepo;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +14,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,6 +59,8 @@ public class CustomLogoutHandler implements LogoutHandler {
             refreshToken = request.getHeader("X-Refresh-Token");
         }
 
+        CustomUserPrincipal principal = (CustomUserPrincipal) authentication.getPrincipal();
+
         // 3. Revoke from Database
         if (refreshToken != null) {
             log.info("Revoking refresh token during logout flow");
@@ -63,6 +68,8 @@ public class CustomLogoutHandler implements LogoutHandler {
                     .ifPresent(token -> {
                         // Hard delete or Soft revoke
                         token.setRevoked(true);
+                        assert principal != null;
+                        publishAudit(principal.user().getId(), AuditAction.LOGOUT, null);
                     });
         }
 

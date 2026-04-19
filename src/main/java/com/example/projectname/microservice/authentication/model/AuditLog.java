@@ -12,15 +12,12 @@ import java.util.UUID;
  * Designed for high-speed writes and long-term storage.
  */
 @Entity
-@Table(name = "audit_logs", indexes = {
-        @Index(name = "idx_audit_user_id", columnList = "user_id"),
-        @Index(name = "idx_audit_created_at", columnList = "created_at")
-})
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "audit_logs")
 public class AuditLog {
 
     @Id
@@ -28,7 +25,7 @@ public class AuditLog {
     private UUID id;
 
     @Column(name = "user_id")
-    private UUID userId; // We store the ID directly for decoupling
+    private UUID userId;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

@@ -22,9 +22,9 @@ public class AuditListener {
      * Catches AuditEvents and persists them to the database.
      * Transactional and Async to ensure high performance and reliability.
      */
-    @Async // Runs this in a background thread pool
-    @EventListener // Tells Spring to watch for AuditEvent
-    @Transactional(propagation = Propagation.REQUIRES_NEW) // Ensure log is saved even if main transaction fails
+    @Async
+    @EventListener
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void handleAuditEvent(AuditEventResponse event) {
         log.debug("Logging audit action: {} for user: {}", event.action(), event.userId());
 
