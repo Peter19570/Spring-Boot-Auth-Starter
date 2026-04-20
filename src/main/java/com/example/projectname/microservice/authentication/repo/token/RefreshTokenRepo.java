@@ -1,6 +1,6 @@
-package com.example.projectname.microservice.authentication.repo;
+package com.example.projectname.microservice.authentication.repo.token;
 
-import com.example.projectname.microservice.authentication.model.RefreshToken;
+import com.example.projectname.microservice.authentication.model.token.RefreshToken;
 import com.example.projectname.microservice.authentication.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

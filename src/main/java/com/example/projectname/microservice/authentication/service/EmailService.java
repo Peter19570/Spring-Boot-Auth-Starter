@@ -1,6 +1,6 @@
 package com.example.projectname.microservice.authentication.service;
 
-import com.example.projectname.microservice.authentication.exception.MailSenderException;
+import com.example.projectname.exception.custom.AuthenticationException;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -127,12 +127,17 @@ public class EmailService {
         // 2. Build the message body
         // PROD TIP: Use a template engine like Thymeleaf for HTML emails in the future
         String message = String.format(
-                "Hello,\n\n" +
-                        "You requested to change your account email to %s.\n\n" +
-                        "To complete this process, please click the link below to verify this address:\n" +
-                        "%s\n\n" +
-                        "This link will expire in 2 hours.\n\n" +
-                        "If you did not request this change, please ignore this email. Your current email remains secure.",
+                """
+                        Hello,
+                        
+                        You requested to change your account email to %s.
+                        
+                        To complete this process, please click the link below to verify this address:
+                        %s
+                        
+                        This link will expire in 2 hours.
+                        
+                        If you did not request this change, please ignore this email. Your current email remains secure.""",
                 newEmail, confirmationUrl
         );
 
@@ -150,7 +155,7 @@ public class EmailService {
             mailSender.send(message);
         } catch (MessagingException e) {
             log.error("Failed to send verification email to {}: {}", to, e.getMessage());
-            throw new MailSenderException("Failed to send email");
+            throw new AuthenticationException("Failed to send email");
         }
     }
 }

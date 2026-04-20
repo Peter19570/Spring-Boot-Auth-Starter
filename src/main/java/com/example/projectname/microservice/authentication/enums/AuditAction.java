@@ -1,6 +1,7 @@
 package com.example.projectname.microservice.authentication.enums;
 
 public enum AuditAction {
+    REGISTER,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
     LOGOUT,

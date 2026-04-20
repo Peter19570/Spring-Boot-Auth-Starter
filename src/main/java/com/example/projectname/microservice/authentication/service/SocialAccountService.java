@@ -1,8 +1,8 @@
 package com.example.projectname.microservice.authentication.service;
 
+import com.example.projectname.exception.custom.AuthenticationException;
 import com.example.projectname.microservice.authentication.dto.internal.AuditEventResponse;
 import com.example.projectname.microservice.authentication.enums.AuditAction;
-import com.example.projectname.microservice.authentication.exception.ResourceNotFoundException;
 import com.example.projectname.microservice.authentication.model.SocialAccount;
 import com.example.projectname.microservice.authentication.model.User;
 import com.example.projectname.microservice.authentication.repo.SocialAccountRepo;
@@ -30,13 +30,13 @@ public class SocialAccountService {
     public void unlinkProvider(UUID userId, String provider) {
         // 1. Fetch a FRESH user with their social accounts joined
         User user = userRepository.findByIdWithSocialAccounts(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+                .orElseThrow(() -> new AuthenticationException("User not found"));
 
         // 2. Find the specific social account to remove
         SocialAccount accountToUnlink = user.getSocialAccounts().stream()
                 .filter(sa -> sa.getProvider().equalsIgnoreCase(provider))
                 .findFirst()
-                .orElseThrow(() -> new ResourceNotFoundException("Social account link not found"));
+                .orElseThrow(() -> new AuthenticationException("Social account link not found"));
 
         // 3. THE SAFETY RAIL: Check if they are about to lock themselves out
         boolean hasPassword = user.getPassword() != null;
@@ -51,17 +51,17 @@ public class SocialAccountService {
         user.getSocialAccounts().remove(accountToUnlink);
         socialAccountRepo.delete(accountToUnlink);
 
-        publishAudit(user.getId(), AuditAction.SOCIAL_UNLINK, null);
+        publishAudit(user.getId());
         log.info("User {} successfully unlinked provider {}", user.getEmail(), provider);
     }
 
-    private void publishAudit(UUID userId, AuditAction action, String metadata) {
+    private void publishAudit(UUID userId) {
         eventPublisher.publishEvent(new AuditEventResponse(
                 userId,
-                action,
+                AuditAction.SOCIAL_UNLINK,
                 request.getRemoteAddr(),
                 request.getHeader("User-Agent"),
-                metadata
+                null
         ));
     }
 }

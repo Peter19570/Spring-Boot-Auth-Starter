@@ -80,7 +80,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         log.info("Processing OAuth2 login for provider: {} with email: {}", provider, email);
         User user = resolveUser(email, provider, providerId, attributes);
 
-        publishAudit(user.getId(), AuditAction.SOCIAL_LINK, null);
+        publishAudit(user.getId(), AuditAction.SOCIAL_LINK);
         return new CustomUserPrincipal(user, attributes);
     }
 
@@ -90,7 +90,11 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 .map(SocialAccount::getUser)
                 .orElseGet(() -> {
                     User existingUser = userRepository.findByEmailWithSocialAccounts(email)
-                            .orElseGet(() -> createNewUser(attributes));
+                            .orElseGet(() -> {
+                                User user = createNewUser(attributes);
+                                publishAudit(user.getId(), AuditAction.REGISTER);
+                                return user;
+                            });
 
                     if (existingUser.getFirstName() == null) {
                         existingUser.setFirstName((String) attributes.get("given_name"));
@@ -143,13 +147,13 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         return (String) attributes.get("id");
     }
 
-    private void publishAudit(UUID userId, AuditAction action, String metadata) {
+    private void publishAudit(UUID userId, AuditAction action) {
         eventPublisher.publishEvent(new AuditEventResponse(
                 userId,
                 action,
                 request.getRemoteAddr(),
                 request.getHeader("User-Agent"),
-                metadata
+                null
         ));
     }
 }

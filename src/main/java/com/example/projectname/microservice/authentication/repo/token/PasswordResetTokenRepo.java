@@ -1,7 +1,6 @@
-package com.example.projectname.microservice.authentication.repo;
+package com.example.projectname.microservice.authentication.repo.token;
 
-import com.example.projectname.microservice.authentication.model.PasswordResetToken;
-import com.example.projectname.microservice.authentication.model.User;
+import com.example.projectname.microservice.authentication.model.token.PasswordResetToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

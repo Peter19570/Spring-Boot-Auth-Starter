@@ -1,5 +1,6 @@
 package com.example.projectname.microservice.authentication.service;
 
+import com.example.projectname.exception.custom.AuthenticationException;
 import com.example.projectname.microservice.authentication.dto.internal.AuditEventResponse;
 import com.example.projectname.microservice.authentication.dto.internal.CustomUserPrincipal;
 import com.example.projectname.microservice.authentication.dto.request.LoginRequest;
@@ -10,14 +11,13 @@ import com.example.projectname.microservice.authentication.dto.response.AuthResp
 import com.example.projectname.microservice.authentication.dto.response.SocialAccountResponse;
 import com.example.projectname.microservice.authentication.dto.response.UserResponse;
 import com.example.projectname.microservice.authentication.enums.AuditAction;
-import com.example.projectname.microservice.authentication.exception.InvalidTokenException;
-import com.example.projectname.microservice.authentication.exception.LockedException;
-import com.example.projectname.microservice.authentication.exception.ResourceNotFoundException;
 import com.example.projectname.microservice.authentication.model.*;
-//import com.example.projectname.microservice.authentication.*;
-import com.example.projectname.microservice.authentication.repo.EmailVerificationTokenRepo;
-import com.example.projectname.microservice.authentication.repo.PasswordResetTokenRepo;
-import com.example.projectname.microservice.authentication.repo.RefreshTokenRepo;
+import com.example.projectname.microservice.authentication.model.token.EmailVerificationToken;
+import com.example.projectname.microservice.authentication.model.token.PasswordResetToken;
+import com.example.projectname.microservice.authentication.model.token.RefreshToken;
+import com.example.projectname.microservice.authentication.repo.token.EmailVerificationTokenRepo;
+import com.example.projectname.microservice.authentication.repo.token.PasswordResetTokenRepo;
+import com.example.projectname.microservice.authentication.repo.token.RefreshTokenRepo;
 import com.example.projectname.microservice.authentication.repo.UserRepo;
 import com.example.projectname.microservice.authentication.security.jwt.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -68,8 +68,9 @@ public class AuthService {
      */
     @Transactional
     public AuthResponse register(RegisterRequest request) {
+        // 1. Check if email exist in the database
         if (userRepository.existsByEmail(request.email())) {
-            throw new RuntimeException("Email already registered");
+            throw new AuthenticationException("Email already registered");
         }
 
         User user = new User();
@@ -79,6 +80,7 @@ public class AuthService {
 
         userRepository.save(user);
         log.info("Successfully registered new baseUser: {}", request.email());
+        publishAudit(user.getId(), AuditAction.REGISTER);
 
         // 2. Generate the Link & Token & Save in the database
         String rawToken = UUID.randomUUID().toString();
@@ -87,7 +89,6 @@ public class AuthService {
         verificationToken.setUser(user);
         verificationToken.setTokenHash(hashToken(rawToken));
         verificationToken.setExpiresAt(Instant.now().plus(Duration.ofDays(1)));
-
         emailVerificationTokenRepo.save(verificationToken);
 
         // 3. Hand off to the Async Email Service
@@ -116,8 +117,8 @@ public class AuthService {
                 userRepository.save(user);
             } else {
                 log.warn("Login blocked: Account {} is currently locked.", user.getEmail());
-                publishAudit(user.getId(), AuditAction.LOGIN_FAILURE, null);
-                throw new LockedException("Account is temporarily locked. Try again later.");
+                publishAudit(user.getId(), AuditAction.LOGIN_FAILURE);
+                throw new AuthenticationException("Account is temporarily locked. Try again later.");
             }
         }
 
@@ -133,8 +134,7 @@ public class AuthService {
             user.setLocked(false);
             userRepository.save(user);
 
-
-            publishAudit(user.getId(), AuditAction.LOGIN_SUCCESS, null);
+            publishAudit(user.getId(), AuditAction.LOGIN_SUCCESS);
             return createAuthResponse(user);
 
         } catch (BadCredentialsException e) {
@@ -148,7 +148,7 @@ public class AuthService {
                 log.warn("Account locked: Email {} reached max failed attempts.", user.getEmail());
             }
 
-            publishAudit(user.getId(), AuditAction.LOGIN_FAILURE, null);
+            publishAudit(user.getId(), AuditAction.LOGIN_FAILURE);
             userRepository.save(user);
             throw e;
         }
@@ -177,7 +177,7 @@ public class AuthService {
                 .orElseThrow(() -> {
                     log.warn("Potential Token Reuse Attempt! User {} " +
                             "tried to use a revoked/expired refresh token.", username);
-                    return new InvalidTokenException("Refresh token is invalid or expired");
+                    return new AuthenticationException("Refresh token is invalid or expired");
                 });
 
         // Rotate: Revoke the used token so it can't be used again
@@ -194,7 +194,7 @@ public class AuthService {
      */
     @Transactional
     public void logout(String refreshToken, User user) {
-        publishAudit(user.getId(), AuditAction.LOGOUT, null);
+        publishAudit(user.getId(), AuditAction.LOGOUT);
         refreshTokenRepository.findByTokenHash(refreshToken)
                 .ifPresent(token -> {
                     token.setRevoked(true);
@@ -209,7 +209,7 @@ public class AuthService {
 
         EmailVerificationToken token = emailVerificationTokenRepo.findByTokenHash(hashedToken)
                 .filter(t -> !t.isUsed() && t.getExpiresAt().isAfter(Instant.now()))
-                .orElseThrow(() -> new InvalidTokenException("Invalid or expired verification token"));
+                .orElseThrow(() -> new AuthenticationException("Invalid or expired verification token"));
 
         // 2. Mark token as used and verify the baseUser
         token.setUsed(true);
@@ -217,8 +217,8 @@ public class AuthService {
         user.setEmailVerified(true);
 
         userRepository.save(user);
-        publishAudit(user.getId(), AuditAction.EMAIL_VERIFIED, null);
         emailVerificationTokenRepo.save(token);
+        publishAudit(user.getId(), AuditAction.EMAIL_VERIFIED);
     }
 
     /**
@@ -231,7 +231,7 @@ public class AuthService {
     @Transactional
     public void requestEmailChange(UUID userId, String newEmail) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+                .orElseThrow(() -> new AuthenticationException("User not found"));
 
         // 1. PROD CHECK: Ensure Social-Only users have a password fallback
         if (user.getPassword() == null) {
@@ -256,7 +256,7 @@ public class AuthService {
         // 4. Send Email to the NEW address
         emailService.sendEmailChangeConfirmation(newEmail, token);
         log.info("Email change request initiated for user {}: {} -> {}", userId, user.getEmail(), newEmail);
-        publishAudit(user.getId(), AuditAction.EMAIL_CHANGE_REQUEST, null);
+        publishAudit(user.getId(), AuditAction.EMAIL_CHANGE_REQUEST);
     }
 
     /**
@@ -266,11 +266,11 @@ public class AuthService {
     @Transactional
     public void confirmEmailChange(String token) {
         EmailVerificationToken emailVerificationToken = emailVerificationTokenRepo.findByTokenHash(token)
-                .orElseThrow(() -> new InvalidTokenException("Invalid or expired token"));
+                .orElseThrow(() -> new AuthenticationException("Invalid or expired token"));
 
         if (emailVerificationToken.getExpiresAt().isBefore(Instant.now())) {
             emailVerificationTokenRepo.delete(emailVerificationToken);
-            throw new InvalidTokenException("Token has expired");
+            throw new AuthenticationException("Token has expired");
         }
 
         User user = emailVerificationToken.getUser();
@@ -285,9 +285,13 @@ public class AuthService {
         emailVerificationTokenRepo.delete(emailVerificationToken);
 
         log.info("Email successfully changed for user {}: {} -> {}", user.getId(), oldEmail, newEmail);
-        publishAudit(user.getId(), AuditAction.EMAIL_CHANGE_CONFIRM, null);
+        publishAudit(user.getId(), AuditAction.EMAIL_CHANGE_CONFIRM);
     }
 
+    /**
+     * Checks if a user's login mode before allowing for a password reset...
+     * Flags the request if the user didn't user standard login
+     * */
     @Transactional
     public void requestPasswordReset(ForgotPasswordRequest request) {
         // 1. Account Enumeration Protection: Same response for existing/non-existing emails
@@ -336,7 +340,7 @@ public class AuthService {
                 .filter(t -> !t.isUsed() && t.getExpiresAt().isAfter(Instant.now()))
                 .orElseThrow(() -> {
                     log.warn("Password reset failed: Invalid or expired token hash {}", hashedToken);
-                    return new InvalidTokenException("Invalid or expired reset token");
+                    return new AuthenticationException("Invalid or expired reset token");
                 });
 
         User user = token.getUser();
@@ -358,7 +362,7 @@ public class AuthService {
         userRepository.save(user);
         passwordResetTokenRepo.save(token);
 
-        publishAudit(user.getId(), AuditAction.PASSWORD_CHANGE, null);
+        publishAudit(user.getId(), AuditAction.PASSWORD_CHANGE);
         log.info("Password successfully reset for baseUser: {}", user.getEmail());
     }
 
@@ -454,13 +458,13 @@ public class AuthService {
         }
     }
 
-    private void publishAudit(UUID userId, AuditAction action, String metadata) {
+    private void publishAudit(UUID userId, AuditAction action) {
         eventPublisher.publishEvent(new AuditEventResponse(
                 userId,
                 action,
                 request.getRemoteAddr(),
                 request.getHeader("User-Agent"),
-                metadata
+                null
         ));
     }
 }

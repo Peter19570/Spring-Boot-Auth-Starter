@@ -1,13 +1,13 @@
 package com.example.projectname.microservice.authentication.security.userservice;
 
 import com.example.projectname.microservice.authentication.dto.internal.CustomUserPrincipal;
-import com.example.projectname.microservice.authentication.exception.UserNotFoundException;
 import com.example.projectname.microservice.authentication.model.User;
 import com.example.projectname.microservice.authentication.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @Configuration
 @RequiredArgsConstructor
@@ -22,7 +22,7 @@ public class CustomUserDetailsService {
     public UserDetailsService userDetailsService(){
         return username -> {
             User user = userRepo.findByEmailAndDeletedAtIsNull(username)
-                    .orElseThrow(() -> new UserNotFoundException("User not found"));
+                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
             return new CustomUserPrincipal(user, null);
         };

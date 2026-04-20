@@ -1,11 +1,10 @@
 package com.example.projectname.microservice.authentication.service;
 
+import com.example.projectname.exception.custom.AuthenticationException;
 import com.example.projectname.microservice.authentication.dto.internal.AuditEventResponse;
 import com.example.projectname.microservice.authentication.enums.AuditAction;
-import com.example.projectname.microservice.authentication.exception.InvalidTokenException;
-import com.example.projectname.microservice.authentication.exception.ResourceNotFoundException;
 import com.example.projectname.microservice.authentication.model.User;
-import com.example.projectname.microservice.authentication.repo.RefreshTokenRepo;
+import com.example.projectname.microservice.authentication.repo.token.RefreshTokenRepo;
 import com.example.projectname.microservice.authentication.repo.UserRepo;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -51,7 +50,7 @@ public class BaseUserService {
     @Transactional
     public void confirmSoftDelete(UUID userId, String password, String otp) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+                .orElseThrow(() -> new AuthenticationException("User not found"));
 
         // 1. Password Challenge (Only if they have one)
         if (user.getPassword() != null) {
@@ -62,7 +61,7 @@ public class BaseUserService {
 
         // 2. OTP Challenge
         if (!otpService.validateOtp(user.getEmail(), otp.replaceAll("\\s+", ""))) {
-            throw new InvalidTokenException("Invalid or expired deletion code.");
+            throw new AuthenticationException("Invalid or expired deletion code.");
         }
 
         // 3. The Soft Delete
@@ -73,16 +72,16 @@ public class BaseUserService {
 
         userRepository.save(user);
         log.warn("User {} soft-deleted at {}", userId, user.getDeletedAt());
-        publishAudit(user.getId(), AuditAction.ACCOUNT_SOFT_DELETE, null);
+        publishAudit(user.getId());
     }
 
-    private void publishAudit(UUID userId, AuditAction action, String metadata) {
+    private void publishAudit(UUID userId) {
         eventPublisher.publishEvent(new AuditEventResponse(
                 userId,
-                action,
+                AuditAction.ACCOUNT_SOFT_DELETE,
                 request.getRemoteAddr(),
                 request.getHeader("User-Agent"),
-                metadata
+                null
         ));
     }
 }
