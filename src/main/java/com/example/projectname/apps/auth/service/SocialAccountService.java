@@ -42,7 +42,7 @@ public class SocialAccountService {
         boolean hasPassword = user.getPassword() != null;
         int socialCount = user.getSocialAccounts().size();
 
-        if (!hasPassword && socialCount <= 1) {
+        if (!hasPassword && socialCount == 1) {
             throw new IllegalStateException(
                     "Cannot unlink your only login method. Please set a password first.");
         }

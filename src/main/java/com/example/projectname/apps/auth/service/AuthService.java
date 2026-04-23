@@ -65,8 +65,6 @@ public class AuthService {
 
     /**
      * Registers a new baseUser with a hashed password and sends a verification email
-     * @param request The registration details
-     * @return AuthResponse containing the initial set of tokens
      */
     @Transactional
     public AuthResponse register(RegisterRequest request) {
@@ -102,8 +100,6 @@ public class AuthService {
 
     /**
      * Authenticates a baseUser and generates fresh tokens.
-     * @param request Email and Password credentials
-     * @return AuthResponse containing access and refresh tokens
      */
     public AuthResponse login(LoginRequest request) {
         User user = userRepository.findByEmailAndDeletedAtIsNull(request.email())
@@ -159,8 +155,6 @@ public class AuthService {
     /**
      * Refreshes an access token using a valid refresh token.
      * Implements "Refresh Token Rotation" for high security.
-     * @param request The plaintext refresh token from the client
-     * @return A new pair of access and refresh tokens
      */
     @Transactional
     public AuthResponse refresh(RefreshTokenRequest request) {
@@ -170,7 +164,7 @@ public class AuthService {
         User user = userRepository.findByEmailAndDeletedAtIsNull(username)
                 .orElseThrow(() -> {
                     log.error("User, {} with refresh token not found in database", username);
-                    return new RuntimeException("Invalid refresh token");
+                    return new AuthenticationException("Invalid refresh token");
                 });
 
         // Verify the token exists in DB, isn't revoked, and isn't expired
@@ -192,7 +186,6 @@ public class AuthService {
 
     /**
      * Logs the baseUser out by revoking the specific refresh token.
-     * @param refreshToken The token to invalidate, I also configured the logout in spring security so this is low-key redundant, buh yah im keeping it...
      */
     @Transactional
     public void logout(String refreshToken, User user) {
@@ -226,9 +219,6 @@ public class AuthService {
     /**
      * Initiates the email change process. Validates that the new email is not taken
      * and sends a verification token to the NEW address.
-     * * @param userId The ID of the currently authenticated user.
-     * @param newEmail The target email address the user wishes to switch to.
-     * @throws IllegalStateException If the user is Social-Only or email is taken.
      */
     @Transactional
     public void requestEmailChange(UUID userId, String newEmail) {
@@ -390,9 +380,6 @@ public class AuthService {
 
     /**
      * Saves a new refresh token for the given user.
-     *
-     * @param user  the user to associate the refresh token with
-     * @param token the refresh token to store (should be hashed before calling this method)
      */
     private void saveRefreshToken(User user, String token) {
         RefreshToken rt = new RefreshToken();
@@ -438,9 +425,6 @@ public class AuthService {
     /**
      * Hashes the given raw token using SHA-256 algorithm and returns the result
      * as a lowercase hexadecimal string.
-     *
-     * @param rawToken the original token string to be hashed
-     * @return the SHA-256 hash of the input as a 64-character lowercase hex string
      */
     private String hashToken(String rawToken) {
         try {
