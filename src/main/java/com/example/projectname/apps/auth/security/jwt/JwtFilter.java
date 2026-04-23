@@ -1,6 +1,6 @@
-package com.example.projectname.microservice.authentication.security.jwt;
+package com.example.projectname.apps.auth.security.jwt;
 
-import com.example.projectname.microservice.authentication.dto.internal.CustomUserPrincipal;
+import com.example.projectname.apps.auth.dto.internal.CustomUserPrincipal;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import jakarta.servlet.FilterChain;

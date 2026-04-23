@@ -1,11 +1,11 @@
-package com.example.projectname.microservice.authentication.security.oauth2;
+package com.example.projectname.apps.auth.security.oauth2;
 
-import com.example.projectname.microservice.authentication.dto.internal.AuditEventResponse;
-import com.example.projectname.microservice.authentication.dto.internal.CustomUserPrincipal;
-import com.example.projectname.microservice.authentication.enums.AuditAction;
-import com.example.projectname.microservice.authentication.model.token.RefreshToken;
-import com.example.projectname.microservice.authentication.repo.token.RefreshTokenRepo;
-import com.example.projectname.microservice.authentication.security.jwt.JwtService;
+import com.example.projectname.apps.audit.dto.response.AuditEventResponse;
+import com.example.projectname.apps.auth.dto.internal.CustomUserPrincipal;
+import com.example.projectname.apps.audit.enums.AuditAction;
+import com.example.projectname.apps.auth.model.token.RefreshToken;
+import com.example.projectname.apps.auth.repository.token.RefreshTokenRepo;
+import com.example.projectname.apps.auth.security.jwt.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -64,7 +64,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
         // 3. Redirect back to React dashboard
         getRedirectStrategy().sendRedirect(request, response, frontendUrl + "/dashboard");
-        publishAudit(principal.user().getId(), AuditAction.LOGIN_SUCCESS, null);
+        publishAudit(principal.user().getId());
     }
 
     /**
@@ -88,13 +88,13 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
     }
 
-    private void publishAudit(UUID userId, AuditAction action, String metadata) {
+    private void publishAudit(UUID userId) {
         eventPublisher.publishEvent(new AuditEventResponse(
                 userId,
-                action,
+                AuditAction.LOGIN_SUCCESS,
                 request.getRemoteAddr(),
                 request.getHeader("User-Agent"),
-                metadata
+                null
         ));
     }
 }

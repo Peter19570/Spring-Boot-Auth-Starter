@@ -1,5 +1,6 @@
-package com.example.projectname.apps.audit;
+package com.example.projectname.apps.audit.model;
 
+import com.example.projectname.apps.audit.enums.AuditAction;
 import jakarta.persistence.*;
 import lombok.*;
 

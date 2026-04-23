@@ -1,4 +1,4 @@
-package com.example.projectname.apps.user.model;
+package com.example.projectname.apps.users.model;
 
 import com.example.projectname.apps.auth.base.BaseUser;
 import com.example.projectname.apps.auth.model.SocialAccount;

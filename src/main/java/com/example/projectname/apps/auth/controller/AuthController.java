@@ -1,10 +1,10 @@
-package com.example.projectname.microservice.authentication.controller;
+package com.example.projectname.apps.auth.controller;
 
-import com.example.projectname.microservice.authentication.dto.internal.ApiResponse;
-import com.example.projectname.microservice.authentication.dto.internal.CustomUserPrincipal;
-import com.example.projectname.microservice.authentication.dto.request.*;
-import com.example.projectname.microservice.authentication.dto.response.AuthResponse;
-import com.example.projectname.microservice.authentication.service.AuthService;
+import com.example.projectname.apps.auth.dto.internal.ApiResponse;
+import com.example.projectname.apps.auth.dto.internal.CustomUserPrincipal;
+import com.example.projectname.apps.auth.dto.request.*;
+import com.example.projectname.apps.auth.dto.response.AuthResponse;
+import com.example.projectname.apps.auth.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 

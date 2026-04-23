@@ -1,4 +1,4 @@
-package com.example.projectname.apps.user.dto.response;
+package com.example.projectname.apps.users.dto.response;
 
 import com.example.projectname.apps.auth.dto.response.SocialResponse;
 

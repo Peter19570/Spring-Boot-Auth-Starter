@@ -1,6 +1,6 @@
 package com.example.projectname.apps.auth.dto.response;
 
-public record OAuthResponse(
+public record SocialResponse(
         String provider
 ) {
 }

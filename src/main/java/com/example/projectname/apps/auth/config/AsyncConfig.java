@@ -1,4 +1,4 @@
-package com.example.projectname.microservice.authentication.config;
+package com.example.projectname.apps.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

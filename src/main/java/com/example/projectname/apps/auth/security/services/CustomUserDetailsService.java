@@ -1,8 +1,8 @@
-package com.example.projectname.apps.auth.security.userservice;
+package com.example.projectname.apps.auth.security.services;
 
 import com.example.projectname.apps.auth.dto.internal.CustomUserPrincipal;
-import com.example.projectname.apps.auth.model.User;
-import com.example.projectname.apps.auth.repo.UserRepo;
+import com.example.projectname.apps.users.model.User;
+import com.example.projectname.apps.users.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

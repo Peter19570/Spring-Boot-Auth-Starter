@@ -1,4 +1,4 @@
-package com.example.projectname.apps.auth.repo.token;
+package com.example.projectname.apps.auth.repository.token;
 
 import com.example.projectname.apps.auth.model.token.EmailVerificationToken;
 import org.springframework.data.jpa.repository.JpaRepository;

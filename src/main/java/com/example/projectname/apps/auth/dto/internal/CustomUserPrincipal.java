@@ -1,6 +1,6 @@
-package com.example.projectname.microservice.authentication.dto.internal;
+package com.example.projectname.apps.auth.dto.internal;
 
-import com.example.projectname.microservice.authentication.model.User;
+import com.example.projectname.apps.users.model.User;
 import org.jspecify.annotations.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

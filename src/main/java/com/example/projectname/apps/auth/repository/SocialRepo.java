@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface SocialAccountRepo extends JpaRepository<SocialAccount, UUID> {
+public interface SocialRepo extends JpaRepository<SocialAccount, UUID> {
 
     Optional<SocialAccount> findByProviderAndProviderId(String provider, String providerId);
 

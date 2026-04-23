@@ -1,9 +1,9 @@
-package com.example.projectname.apps.user.service;
+package com.example.projectname.apps.users.service;
 
 import com.example.projectname.apps.auth.service.helper.EmailService;
 import com.example.projectname.apps.auth.service.helper.InMemoryOtpService;
-import com.example.projectname.apps.user.model.User;
-import com.example.projectname.apps.user.repository.UserRepo;
+import com.example.projectname.apps.users.model.User;
+import com.example.projectname.apps.users.repository.UserRepo;
 import com.example.projectname.exception.custom.AuthenticationException;
 import com.example.projectname.apps.audit.dto.response.AuditEventResponse;
 import com.example.projectname.apps.audit.enums.AuditAction;

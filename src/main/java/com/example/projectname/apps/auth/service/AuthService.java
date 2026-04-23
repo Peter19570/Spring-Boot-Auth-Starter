@@ -1,25 +1,27 @@
-package com.example.projectname.microservice.authentication.service;
+package com.example.projectname.apps.auth.service;
 
+import com.example.projectname.apps.auth.dto.response.SocialResponse;
+import com.example.projectname.apps.auth.model.SocialAccount;
+import com.example.projectname.apps.auth.service.helper.EmailService;
+import com.example.projectname.apps.users.model.User;
 import com.example.projectname.exception.custom.AuthenticationException;
-import com.example.projectname.microservice.authentication.dto.internal.AuditEventResponse;
-import com.example.projectname.microservice.authentication.dto.internal.CustomUserPrincipal;
-import com.example.projectname.microservice.authentication.dto.request.LoginRequest;
-import com.example.projectname.microservice.authentication.dto.request.ForgotPasswordRequest;
-import com.example.projectname.microservice.authentication.dto.request.RefreshTokenRequest;
-import com.example.projectname.microservice.authentication.dto.request.RegisterRequest;
-import com.example.projectname.microservice.authentication.dto.response.AuthResponse;
-import com.example.projectname.microservice.authentication.dto.response.SocialAccountResponse;
-import com.example.projectname.microservice.authentication.dto.response.UserResponse;
-import com.example.projectname.microservice.authentication.enums.AuditAction;
-import com.example.projectname.microservice.authentication.model.*;
-import com.example.projectname.microservice.authentication.model.token.EmailVerificationToken;
-import com.example.projectname.microservice.authentication.model.token.PasswordResetToken;
-import com.example.projectname.microservice.authentication.model.token.RefreshToken;
-import com.example.projectname.microservice.authentication.repo.token.EmailVerificationTokenRepo;
-import com.example.projectname.microservice.authentication.repo.token.PasswordResetTokenRepo;
-import com.example.projectname.microservice.authentication.repo.token.RefreshTokenRepo;
-import com.example.projectname.microservice.authentication.repo.UserRepo;
-import com.example.projectname.microservice.authentication.security.jwt.JwtService;
+import com.example.projectname.apps.audit.dto.response.AuditEventResponse;
+import com.example.projectname.apps.auth.dto.internal.CustomUserPrincipal;
+import com.example.projectname.apps.auth.dto.request.LoginRequest;
+import com.example.projectname.apps.auth.dto.request.ForgotPasswordRequest;
+import com.example.projectname.apps.auth.dto.request.RefreshTokenRequest;
+import com.example.projectname.apps.auth.dto.request.RegisterRequest;
+import com.example.projectname.apps.auth.dto.response.AuthResponse;
+import com.example.projectname.apps.users.dto.response.UserResponse;
+import com.example.projectname.apps.audit.enums.AuditAction;
+import com.example.projectname.apps.auth.model.token.EmailVerificationToken;
+import com.example.projectname.apps.auth.model.token.PasswordResetToken;
+import com.example.projectname.apps.auth.model.token.RefreshToken;
+import com.example.projectname.apps.auth.repository.token.EmailVerificationTokenRepo;
+import com.example.projectname.apps.auth.repository.token.PasswordResetTokenRepo;
+import com.example.projectname.apps.auth.repository.token.RefreshTokenRepo;
+import com.example.projectname.apps.users.repository.UserRepo;
+import com.example.projectname.apps.auth.security.jwt.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -405,7 +407,7 @@ public class AuthService {
      * Handles the collection of social accounts safely.
      */
     private UserResponse mapToUserResponse(User user) {
-        List<SocialAccountResponse> socialResponses = Optional.ofNullable(user.getSocialAccounts())
+        List<SocialResponse> socialResponses = Optional.ofNullable(user.getSocialAccounts())
                 .orElse(Collections.emptyList())
                 .stream()
                 .map(this::mapToSocialResponse)
@@ -424,11 +426,11 @@ public class AuthService {
     }
 
     /**
-     * Maps a single SocialAccount entity to a SocialAccountResponse DTO.
+     * Maps a single SocialAccount entity to a SocialResponse DTO.
      */
-    private SocialAccountResponse mapToSocialResponse(SocialAccount socialAccount) {
+    private SocialResponse mapToSocialResponse(SocialAccount socialAccount) {
         if (socialAccount == null) return null;
-        return new SocialAccountResponse(
+        return new SocialResponse(
                 socialAccount.getProvider()
         );
     }

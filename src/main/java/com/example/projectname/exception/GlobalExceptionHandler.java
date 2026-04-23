@@ -1,7 +1,7 @@
 package com.example.projectname.exception;
 
 import com.example.projectname.exception.custom.AuthenticationException;
-import com.example.projectname.microservice.authentication.dto.internal.ApiResponse;
+import com.example.projectname.apps.auth.dto.internal.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;

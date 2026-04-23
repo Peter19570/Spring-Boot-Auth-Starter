@@ -1,4 +1,4 @@
-package com.example.projectname.apps.audit;
+package com.example.projectname.apps.audit.enums;
 
 public enum AuditAction {
     REGISTER,

@@ -1,7 +1,7 @@
-package com.example.projectname.microservice.authentication.controller;
+package com.example.projectname.apps.auth.controller;
 
-import com.example.projectname.microservice.authentication.dto.internal.CustomUserPrincipal;
-import com.example.projectname.microservice.authentication.service.SocialAccountService;
+import com.example.projectname.apps.auth.dto.internal.CustomUserPrincipal;
+import com.example.projectname.apps.auth.service.SocialAccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

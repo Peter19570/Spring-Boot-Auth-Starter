@@ -1,4 +1,6 @@
-package com.example.projectname.microservice.authentication.dto.response;
+package com.example.projectname.apps.auth.dto.response;
+
+import com.example.projectname.apps.users.dto.response.UserResponse;
 
 public record AuthResponse(
         String accessToken,

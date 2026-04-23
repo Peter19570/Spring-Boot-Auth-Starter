@@ -1,5 +1,8 @@
-package com.example.projectname.apps.audit;
+package com.example.projectname.apps.audit.service;
 
+import com.example.projectname.apps.audit.model.AuditLog;
+import com.example.projectname.apps.audit.repository.AuditLogRepo;
+import com.example.projectname.apps.audit.dto.response.AuditEventResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;

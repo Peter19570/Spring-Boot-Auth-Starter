@@ -1,4 +1,4 @@
-package com.example.projectname.apps.auth.common;
+package com.example.projectname.apps.common;
 
 import jakarta.persistence.*;
 import lombok.Getter;

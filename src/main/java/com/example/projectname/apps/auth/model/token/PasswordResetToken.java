@@ -1,6 +1,6 @@
-package com.example.projectname.microservice.authentication.model.token;
+package com.example.projectname.apps.auth.model.token;
 
-import com.example.projectname.microservice.authentication.model.User;
+import com.example.projectname.apps.users.model.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

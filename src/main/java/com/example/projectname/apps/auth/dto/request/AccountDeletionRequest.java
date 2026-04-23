@@ -1,9 +1,10 @@
-package com.example.projectname.microservice.authentication.dto.request;
+package com.example.projectname.apps.auth.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public record AccountDeletionRequest(
+
         String password,
 
         @NotBlank(message = "Verification code is required")

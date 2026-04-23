@@ -1,6 +1,6 @@
-package com.example.projectname.apps.user.repository;
+package com.example.projectname.apps.users.repository;
 
-import com.example.projectname.apps.user.model.User;
+import com.example.projectname.apps.users.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

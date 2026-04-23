@@ -1,4 +1,4 @@
-package com.example.projectname.microservice.authentication.security.ratelimit;
+package com.example.projectname.apps.auth.security.ratelimit;
 
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;

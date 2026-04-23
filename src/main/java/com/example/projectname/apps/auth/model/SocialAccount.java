@@ -1,7 +1,7 @@
 package com.example.projectname.apps.auth.model;
 
 import com.example.projectname.apps.common.BaseEntity;
-import com.example.projectname.apps.user.model.User;
+import com.example.projectname.apps.users.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Table(name = "social_accounts")
-public class Social extends BaseEntity {
+public class SocialAccount extends BaseEntity {
 
     private String providerId;
 

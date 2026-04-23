@@ -1,12 +1,13 @@
-package com.example.projectname.microservice.authentication.security;
+package com.example.projectname.apps.auth.security.config;
 
-import com.example.projectname.microservice.authentication.security.jwt.JwtFilter;
-import com.example.projectname.microservice.authentication.security.oauth2.CustomLogoutHandler;
-import com.example.projectname.microservice.authentication.security.oauth2.CustomOAuth2UserService;
-import com.example.projectname.microservice.authentication.security.oauth2.OAuth2AuthenticationSuccessHandler;
-import com.example.projectname.microservice.authentication.security.ratelimit.RateLimitFilter;
+import com.example.projectname.apps.auth.security.jwt.JwtFilter;
+import com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler;
+import com.example.projectname.apps.auth.security.oauth2.CustomOAuth2UserService;
+import com.example.projectname.apps.auth.security.oauth2.OAuth2AuthenticationSuccessHandler;
+import com.example.projectname.apps.auth.security.ratelimit.RateLimitFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,34 +46,33 @@ public class SecurityConfig {
     private final OAuth2AuthenticationSuccessHandler successHandler;
     private final CustomLogoutHandler customLogoutHandler;
 
-    @Value("${app.cors.allowed-origins}")
-    private List<String> allowedOrigins;
 
+    /**
+     * Configure Spring Security for application
+     * */
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(
+            HttpSecurity http,
+            @Qualifier("corsConfigurationSource") CorsConfigurationSource configurationSource) throws Exception {
         return http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .cors(cors -> cors.configurationSource(configurationSource))
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(s -> s
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(rateLimitFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/swagger-ui/**",
-                                "/v3/api-docs/**",
-                                "/api/v1/auth/**",
-                                "/oauth2/**",
-                                "/login/oauth2/**"
-                        ).permitAll()
-                        .requestMatchers("/ws/**").permitAll() // for websocket initialization
+                        .requestMatchers("/api/v1/auth/**").permitAll() // standard
+                        .requestMatchers("/oauth2/**", "/login/oauth2/**").permitAll() // oauth2
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll() // swagger
+                        .requestMatchers("/ws/**").permitAll() // websocket
                         .anyRequest().authenticated())
                 .exceptionHandling(e -> e
                         .authenticationEntryPoint(
                                 new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .logout(logout -> logout
                         .logoutUrl("/api/v1/auth/logout")
-                        .addLogoutHandler(customLogoutHandler) // Where we revoke the DB token
+                        .addLogoutHandler(customLogoutHandler)
                         .logoutSuccessHandler((request, response, auth) -> {
                             response.setStatus(HttpServletResponse.SC_OK);
                         })
@@ -87,25 +87,6 @@ public class SecurityConfig {
                 .build();
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(allowedOrigins);
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-        config.setAllowedHeaders(List.of(
-                "Authorization",
-                "Content-Type",
-                "Accept",
-                "X-Requested-With",
-                "ngrok-skip-browser-warning"));
-        config.setExposedHeaders(List.of("Authorization"));
-//        config.setAllowCredentials(true);
-        config.setMaxAge(3600L);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
 
     @Bean
     public OidcUserService customOidcUserService(CustomOAuth2UserService customOAuth2UserService) {
@@ -118,6 +99,9 @@ public class SecurityConfig {
         };
     }
 
+    /**
+     * Encode/Decode passwords using BCrypt, default at 10 btw
+     * */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

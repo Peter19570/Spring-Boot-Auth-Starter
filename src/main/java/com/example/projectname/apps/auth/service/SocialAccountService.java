@@ -1,12 +1,12 @@
-package com.example.projectname.microservice.authentication.service;
+package com.example.projectname.apps.auth.service;
 
 import com.example.projectname.exception.custom.AuthenticationException;
-import com.example.projectname.microservice.authentication.dto.internal.AuditEventResponse;
-import com.example.projectname.microservice.authentication.enums.AuditAction;
-import com.example.projectname.microservice.authentication.model.SocialAccount;
-import com.example.projectname.microservice.authentication.model.User;
-import com.example.projectname.microservice.authentication.repo.SocialAccountRepo;
-import com.example.projectname.microservice.authentication.repo.UserRepo;
+import com.example.projectname.apps.audit.dto.response.AuditEventResponse;
+import com.example.projectname.apps.audit.enums.AuditAction;
+import com.example.projectname.apps.auth.model.SocialAccount;
+import com.example.projectname.apps.users.model.User;
+import com.example.projectname.apps.auth.repository.SocialRepo;
+import com.example.projectname.apps.users.repository.UserRepo;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import java.util.UUID;
 public class SocialAccountService {
 
     private final UserRepo userRepository;
-    private final SocialAccountRepo socialAccountRepo;
+    private final SocialRepo socialAccountRepo;
     private final ApplicationEventPublisher eventPublisher;
     private final HttpServletRequest request;
 

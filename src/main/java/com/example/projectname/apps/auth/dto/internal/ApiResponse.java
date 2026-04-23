@@ -1,4 +1,4 @@
-package com.example.projectname.microservice.authentication.dto.internal;
+package com.example.projectname.apps.auth.dto.internal;
 
 import lombok.NonNull;
 

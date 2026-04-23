@@ -1,6 +1,7 @@
-package com.example.projectname.apps.auth.common;
+package com.example.projectname.apps.auth.base;
 
-import com.example.projectname.apps.auth.enums.UserRole;
+import com.example.projectname.apps.common.BaseEntity;
+import com.example.projectname.apps.users.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

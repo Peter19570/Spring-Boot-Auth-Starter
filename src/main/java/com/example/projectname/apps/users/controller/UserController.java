@@ -1,8 +1,8 @@
-package com.example.projectname.apps.user.controller;
+package com.example.projectname.apps.users.controller;
 
 import com.example.projectname.apps.auth.dto.internal.CustomUserPrincipal;
 import com.example.projectname.apps.auth.dto.request.AccountDeletionRequest;
-import com.example.projectname.apps.user.service.UserService;
+import com.example.projectname.apps.users.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

@@ -1,4 +1,4 @@
-package com.example.projectname.microservice.authentication.security.jwt;
+package com.example.projectname.apps.auth.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

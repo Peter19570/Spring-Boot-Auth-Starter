@@ -1,5 +1,7 @@
-package com.example.projectname.apps.audit;
+package com.example.projectname.apps.audit.repository;
 
+import com.example.projectname.apps.audit.model.AuditLog;
+import com.example.projectname.apps.audit.enums.AuditAction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

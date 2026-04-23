@@ -1,13 +1,13 @@
-package com.example.projectname.microservice.authentication.security.oauth2;
+package com.example.projectname.apps.auth.security.oauth2;
 
-import com.example.projectname.microservice.authentication.dto.internal.AuditEventResponse;
-import com.example.projectname.microservice.authentication.dto.internal.CustomUserPrincipal;
-import com.example.projectname.microservice.authentication.enums.AuditAction;
-import com.example.projectname.microservice.authentication.enums.UserRole;
-import com.example.projectname.microservice.authentication.model.SocialAccount;
-import com.example.projectname.microservice.authentication.model.User;
-import com.example.projectname.microservice.authentication.repo.SocialAccountRepo;
-import com.example.projectname.microservice.authentication.repo.UserRepo;
+import com.example.projectname.apps.audit.dto.response.AuditEventResponse;
+import com.example.projectname.apps.auth.dto.internal.CustomUserPrincipal;
+import com.example.projectname.apps.audit.enums.AuditAction;
+import com.example.projectname.apps.users.enums.UserRole;
+import com.example.projectname.apps.auth.model.SocialAccount;
+import com.example.projectname.apps.users.model.User;
+import com.example.projectname.apps.auth.repository.SocialRepo;
+import com.example.projectname.apps.users.repository.UserRepo;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,7 @@ import java.util.UUID;
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private final UserRepo userRepository;
-    private final SocialAccountRepo socialAccountRepository;
+    private final SocialRepo socialAccountRepository;
     private final ApplicationEventPublisher eventPublisher;
     private final HttpServletRequest request;
 

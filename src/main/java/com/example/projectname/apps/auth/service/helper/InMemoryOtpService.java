@@ -1,4 +1,4 @@
-package com.example.projectname.apps.auth.service;
+package com.example.projectname.apps.auth.service.helper;
 
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
