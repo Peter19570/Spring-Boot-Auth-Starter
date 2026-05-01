@@ -1,6 +1,6 @@
-package com.example.projectname.module.auth.repository.token;
+package com.example.projectname.module.auth.repository;
 
-import com.example.projectname.module.auth.model.token.RefreshToken;
+import com.example.projectname.module.auth.model.RefreshToken;
 import com.example.projectname.module.users.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

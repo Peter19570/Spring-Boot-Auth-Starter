@@ -1,10 +1,10 @@
-package com.example.projectname.apps.auth.controller;
+package com.example.projectname.module.auth.controller;
 
-import com.example.projectname.apps.auth.dto.internal.ApiResponse;
-import com.example.projectname.apps.auth.dto.internal.CustomUserPrincipal;
-import com.example.projectname.apps.auth.dto.request.*;
-import com.example.projectname.apps.auth.dto.response.AuthResponse;
-import com.example.projectname.apps.auth.service.AuthService;
+import com.example.projectname.module.shared.dto.response.ApiResponse;
+import com.example.projectname.module.shared.dto.response.CustomUserPrincipal;
+import com.example.projectname.module.auth.dto.request.*;
+import com.example.projectname.module.auth.dto.response.AuthResponse;
+import com.example.projectname.module.auth.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 

@@ -1,4 +1,4 @@
-package com.example.projectname.module.auth.base;
+package com.example.projectname.module.auth.model;
 
 import com.example.projectname.module.shared.model.BaseEntity;
 import com.example.projectname.module.users.enums.UserRole;

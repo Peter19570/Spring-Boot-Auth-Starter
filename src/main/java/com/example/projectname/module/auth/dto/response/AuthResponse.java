@@ -1,6 +1,6 @@
-package com.example.projectname.apps.auth.dto.response;
+package com.example.projectname.module.auth.dto.response;
 
-import com.example.projectname.apps.users.dto.response.UserResponse;
+import com.example.projectname.module.users.dto.response.UserResponse;
 
 public record AuthResponse(
         String accessToken,

@@ -1,11 +1,11 @@
-package com.example.projectname.module.auth.service;
+package com.example.projectname.module.social.service;
 
-import com.example.projectname.exception.custom.AuthenticationException;
+import com.example.projectname.module.auth.exception.AuthenticationException;
 import com.example.projectname.module.audit.dto.response.AuditEventResponse;
 import com.example.projectname.module.audit.enums.AuditAction;
-import com.example.projectname.module.auth.model.SocialAccount;
+import com.example.projectname.module.social.model.SocialAccount;
 import com.example.projectname.module.users.model.User;
-import com.example.projectname.module.auth.repository.SocialRepo;
+import com.example.projectname.module.social.repository.SocialRepo;
 import com.example.projectname.module.users.repository.UserRepo;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

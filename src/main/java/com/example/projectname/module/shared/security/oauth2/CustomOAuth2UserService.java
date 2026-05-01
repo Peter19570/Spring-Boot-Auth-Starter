@@ -1,12 +1,12 @@
-package com.example.projectname.module.auth.security.oauth2;
+package com.example.projectname.module.shared.security.oauth2;
 
 import com.example.projectname.module.audit.dto.response.AuditEventResponse;
-import com.example.projectname.module.auth.dto.internal.CustomUserPrincipal;
+import com.example.projectname.module.shared.dto.response.CustomUserPrincipal;
 import com.example.projectname.module.audit.enums.AuditAction;
 import com.example.projectname.module.users.enums.UserRole;
-import com.example.projectname.module.auth.model.SocialAccount;
+import com.example.projectname.module.social.model.SocialAccount;
 import com.example.projectname.module.users.model.User;
-import com.example.projectname.module.auth.repository.SocialRepo;
+import com.example.projectname.module.social.repository.SocialRepo;
 import com.example.projectname.module.users.repository.UserRepo;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

@@ -847,7 +847,7 @@ java.lang.IllegalArgumentException: When allowCredentials is true, allowedOrigin
 2026-04-20T13:43:39.711Z  WARN 21160 --- [project_name_here] [EmailThread-1] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 23514
 2026-04-20T13:43:39.712Z  WARN 21160 --- [project_name_here] [EmailThread-1] org.hibernate.orm.jdbc.error             : ERROR: new row for relation "audit_logs" violates check constraint "audit_logs_action_check"
   Detail: Failing row contains (8b9be3ac-9beb-49c6-bd52-31824bcee72d, EMAIL_VERIFIED, 2026-04-20 13:43:39.673136+00, 0:0:0:0:0:0:0:1, null, PostmanRuntime/7.51.1, 60d23936-be84-487c-b2fc-8746b43f9c6d).
-2026-04-20T13:43:39.725Z ERROR 21160 --- [project_name_here] [EmailThread-1] .a.i.SimpleAsyncUncaughtExceptionHandler : Unexpected exception occurred invoking async method: public void service.com.example.projectname.apps.auth.AuditListener.handleAuditEvent(internal.dto.com.example.projectname.apps.auth.AuditEventResponse)
+2026-04-20T13:43:39.725Z ERROR 21160 --- [project_name_here] [EmailThread-1] .a.i.SimpleAsyncUncaughtExceptionHandler : Unexpected exception occurred invoking async method: public void service.com.example.projectname.module.auth.AuditListener.handleAuditEvent(internal.dto.com.example.projectname.module.auth.AuditEventResponse)
 
 org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: new row for relation "audit_logs" violates check constraint "audit_logs_action_check"
   Detail: Failing row contains (8b9be3ac-9beb-49c6-bd52-31824bcee72d, EMAIL_VERIFIED, 2026-04-20 13:43:39.673136+00, 0:0:0:0:0:0:0:1, null, PostmanRuntime/7.51.1, 60d23936-be84-487c-b2fc-8746b43f9c6d).] [insert into audit_logs (action,created_at,ip_address,metadata,user_agent,user_id,id) values (?,?,?,?,?,?,?)]; SQL [insert into audit_logs (action,created_at,ip_address,metadata,user_agent,user_id,id) values (?,?,?,?,?,?,?)]; constraint [audit_logs_action_check]
@@ -919,7 +919,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: new row for relation "audit
 2026-04-20T13:51:56.077Z  WARN 21160 --- [project_name_here] [EmailThread-3] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 23514
 2026-04-20T13:51:56.077Z  WARN 21160 --- [project_name_here] [EmailThread-3] org.hibernate.orm.jdbc.error             : ERROR: new row for relation "audit_logs" violates check constraint "audit_logs_action_check"
   Detail: Failing row contains (76e4f52e-8cd0-4095-b913-57610830e8d0, EMAIL_VERIFIED, 2026-04-20 13:51:56.073487+00, 0:0:0:0:0:0:0:1, null, PostmanRuntime/7.51.1, 1181d1bd-99af-44ae-a73a-4d267042b809).
-2026-04-20T13:51:56.080Z ERROR 21160 --- [project_name_here] [EmailThread-3] .a.i.SimpleAsyncUncaughtExceptionHandler : Unexpected exception occurred invoking async method: public void service.com.example.projectname.apps.auth.AuditListener.handleAuditEvent(internal.dto.com.example.projectname.apps.auth.AuditEventResponse)
+2026-04-20T13:51:56.080Z ERROR 21160 --- [project_name_here] [EmailThread-3] .a.i.SimpleAsyncUncaughtExceptionHandler : Unexpected exception occurred invoking async method: public void service.com.example.projectname.module.auth.AuditListener.handleAuditEvent(internal.dto.com.example.projectname.module.auth.AuditEventResponse)
 
 org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: new row for relation "audit_logs" violates check constraint "audit_logs_action_check"
   Detail: Failing row contains (76e4f52e-8cd0-4095-b913-57610830e8d0, EMAIL_VERIFIED, 2026-04-20 13:51:56.073487+00, 0:0:0:0:0:0:0:1, null, PostmanRuntime/7.51.1, 1181d1bd-99af-44ae-a73a-4d267042b809).] [insert into audit_logs (action,created_at,ip_address,metadata,user_agent,user_id,id) values (?,?,?,?,?,?,?)]; SQL [insert into audit_logs (action,created_at,ip_address,metadata,user_agent,user_id,id) values (?,?,?,?,?,?,?)]; constraint [audit_logs_action_check]
@@ -1036,7 +1036,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: new row for relation "audit
 2026-04-20T13:55:07.056Z  WARN 11660 --- [project_name_here] [EmailThread-2] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 23514
 2026-04-20T13:55:07.057Z  WARN 11660 --- [project_name_here] [EmailThread-2] org.hibernate.orm.jdbc.error             : ERROR: new row for relation "audit_logs" violates check constraint "audit_logs_action_check"
   Detail: Failing row contains (f1033bbc-44f3-47e4-a065-788651e9cd0f, EMAIL_VERIFIED, 2026-04-20 13:55:07.043406+00, 0:0:0:0:0:0:0:1, null, PostmanRuntime/7.51.1, a2a98add-0c9b-4182-860e-a79b2e140d7c).
-2026-04-20T13:55:07.072Z ERROR 11660 --- [project_name_here] [EmailThread-2] .a.i.SimpleAsyncUncaughtExceptionHandler : Unexpected exception occurred invoking async method: public void service.com.example.projectname.apps.auth.AuditListener.handleAuditEvent(internal.dto.com.example.projectname.apps.auth.AuditEventResponse)
+2026-04-20T13:55:07.072Z ERROR 11660 --- [project_name_here] [EmailThread-2] .a.i.SimpleAsyncUncaughtExceptionHandler : Unexpected exception occurred invoking async method: public void service.com.example.projectname.module.auth.AuditListener.handleAuditEvent(internal.dto.com.example.projectname.module.auth.AuditEventResponse)
 
 org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: new row for relation "audit_logs" violates check constraint "audit_logs_action_check"
   Detail: Failing row contains (f1033bbc-44f3-47e4-a065-788651e9cd0f, EMAIL_VERIFIED, 2026-04-20 13:55:07.043406+00, 0:0:0:0:0:0:0:1, null, PostmanRuntime/7.51.1, a2a98add-0c9b-4182-860e-a79b2e140d7c).] [insert into audit_logs (action,created_at,ip_address,metadata,user_agent,user_id,id) values (?,?,?,?,?,?,?)]; SQL [insert into audit_logs (action,created_at,ip_address,metadata,user_agent,user_id,id) values (?,?,?,?,?,?,?)]; constraint [audit_logs_action_check]
@@ -1576,7 +1576,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: new row for relation "audit
 2026-04-23T08:48:40.924Z  INFO 968 --- [project_name_here] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 2026-04-23T08:48:41.025Z  INFO 968 --- [project_name_here] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
 2026-04-23T08:48:41.099Z  INFO 968 --- [project_name_here] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-04-23T08:48:41.616Z ERROR 968 --- [project_name_here] [main] t.s.DeferredServletContainerInitializers : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtFilter' defined in file [C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Trial\authentication\target\classes\com\example\projectname\apps\auth\security\jwt\JwtFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'customUserDetailsService' defined in file [C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Trial\authentication\target\classes\com\example\projectname\apps\auth\security\services\CustomUserDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepo' defined in com.example.projectname.apps.users.repository.UserRepo defined in @EnableJpaRepositories declared on DataJpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Query validation failed for 'SELECT u FROM User u LEFT JOIN FETCH u.socialAccounts WHERE u.id = :id'
+2026-04-23T08:48:41.616Z ERROR 968 --- [project_name_here] [main] t.s.DeferredServletContainerInitializers : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtFilter' defined in file [C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Trial\authentication\target\classes\com\example\projectname\apps\auth\security\jwt\JwtFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'customUserDetailsService' defined in file [C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Trial\authentication\target\classes\com\example\projectname\apps\auth\security\services\CustomUserDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepo' defined in com.example.projectname.module.users.repository.UserRepo defined in @EnableJpaRepositories declared on DataJpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Query validation failed for 'SELECT u FROM User u LEFT JOIN FETCH u.socialAccounts WHERE u.id = :id'
 2026-04-23T08:48:41.638Z  INFO 968 --- [project_name_here] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
 2026-04-23T08:48:41.641Z  WARN 968 --- [project_name_here] [main] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-1:housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base/jdk.internal.misc.Unsafe.park(Native Method)
@@ -1624,7 +1624,7 @@ Caused by: org.springframework.boot.web.server.WebServerException: Unable to sta
 	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:190) ~[spring-boot-web-server-4.0.5.jar:4.0.5]
 	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164) ~[spring-boot-web-server-4.0.5.jar:4.0.5]
 	... 8 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtFilter' defined in file [C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Trial\authentication\target\classes\com\example\projectname\apps\auth\security\jwt\JwtFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'customUserDetailsService' defined in file [C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Trial\authentication\target\classes\com\example\projectname\apps\auth\security\services\CustomUserDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepo' defined in com.example.projectname.apps.users.repository.UserRepo defined in @EnableJpaRepositories declared on DataJpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Query validation failed for 'SELECT u FROM User u LEFT JOIN FETCH u.socialAccounts WHERE u.id = :id'
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtFilter' defined in file [C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Trial\authentication\target\classes\com\example\projectname\apps\auth\security\jwt\JwtFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'customUserDetailsService' defined in file [C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Trial\authentication\target\classes\com\example\projectname\apps\auth\security\services\CustomUserDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepo' defined in com.example.projectname.module.users.repository.UserRepo defined in @EnableJpaRepositories declared on DataJpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Query validation failed for 'SELECT u FROM User u LEFT JOIN FETCH u.socialAccounts WHERE u.id = :id'
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804) ~[spring-beans-7.0.6.jar:7.0.6]
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-7.0.6.jar:7.0.6]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1382) ~[spring-beans-7.0.6.jar:7.0.6]
@@ -1667,7 +1667,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:435) ~[tomcat-embed-core-11.0.20.jar:11.0.20]
 	at org.springframework.boot.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:131) ~[spring-boot-tomcat-4.0.5.jar:4.0.5]
 	... 13 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customUserDetailsService' defined in file [C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Trial\authentication\target\classes\com\example\projectname\apps\auth\security\services\CustomUserDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepo' defined in com.example.projectname.apps.users.repository.UserRepo defined in @EnableJpaRepositories declared on DataJpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Query validation failed for 'SELECT u FROM User u LEFT JOIN FETCH u.socialAccounts WHERE u.id = :id'
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customUserDetailsService' defined in file [C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Trial\authentication\target\classes\com\example\projectname\apps\auth\security\services\CustomUserDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepo' defined in com.example.projectname.module.users.repository.UserRepo defined in @EnableJpaRepositories declared on DataJpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Query validation failed for 'SELECT u FROM User u LEFT JOIN FETCH u.socialAccounts WHERE u.id = :id'
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804) ~[spring-beans-7.0.6.jar:7.0.6]
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-7.0.6.jar:7.0.6]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1382) ~[spring-beans-7.0.6.jar:7.0.6]
@@ -1693,7 +1693,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912) ~[spring-beans-7.0.6.jar:7.0.6]
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-7.0.6.jar:7.0.6]
 	... 53 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepo' defined in com.example.projectname.apps.users.repository.UserRepo defined in @EnableJpaRepositories declared on DataJpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Query validation failed for 'SELECT u FROM User u LEFT JOIN FETCH u.socialAccounts WHERE u.id = :id'
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepo' defined in com.example.projectname.module.users.repository.UserRepo defined in @EnableJpaRepositories declared on DataJpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Query validation failed for 'SELECT u FROM User u LEFT JOIN FETCH u.socialAccounts WHERE u.id = :id'
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1817) ~[spring-beans-7.0.6.jar:7.0.6]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.6.jar:7.0.6]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.6.jar:7.0.6]
@@ -1728,7 +1728,7 @@ Caused by: org.springframework.data.repository.query.QueryCreationException: Can
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864) ~[spring-beans-7.0.6.jar:7.0.6]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813) ~[spring-beans-7.0.6.jar:7.0.6]
 	... 87 common frames omitted
-Caused by: java.lang.IllegalArgumentException: org.hibernate.query.sqm.UnknownPathException: Could not resolve attribute 'socialAccounts' of 'com.example.projectname.apps.users.model.User' [SELECT u FROM User u LEFT JOIN FETCH u.socialAccounts WHERE u.id = :id]
+Caused by: java.lang.IllegalArgumentException: org.hibernate.query.sqm.UnknownPathException: Could not resolve attribute 'socialAccounts' of 'com.example.projectname.module.users.model.User' [SELECT u FROM User u LEFT JOIN FETCH u.socialAccounts WHERE u.id = :id]
 	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:129) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
 	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:168) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
 	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:174) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
@@ -1743,7 +1743,7 @@ Caused by: java.lang.IllegalArgumentException: org.hibernate.query.sqm.UnknownPa
 	at jdk.proxy2/jdk.proxy2.$Proxy148.createQuery(Unknown Source) ~[na:na]
 	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:73) ~[spring-data-jpa-4.0.4.jar:4.0.4]
 	... 103 common frames omitted
-Caused by: org.hibernate.query.sqm.UnknownPathException: Could not resolve attribute 'socialAccounts' of 'com.example.projectname.apps.users.model.User' [SELECT u FROM User u LEFT JOIN FETCH u.socialAccounts WHERE u.id = :id]
+Caused by: org.hibernate.query.sqm.UnknownPathException: Could not resolve attribute 'socialAccounts' of 'com.example.projectname.module.users.model.User' [SELECT u FROM User u LEFT JOIN FETCH u.socialAccounts WHERE u.id = :id]
 	at org.hibernate.query.hql.internal.StandardHqlTranslator.translate(StandardHqlTranslator.java:81) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
 	at org.hibernate.query.internal.QueryInterpretationCacheStandardImpl.createHqlInterpretation(QueryInterpretationCacheStandardImpl.java:165) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
 	at org.hibernate.query.internal.QueryInterpretationCacheStandardImpl.resolveHqlInterpretation(QueryInterpretationCacheStandardImpl.java:147) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
@@ -1751,7 +1751,7 @@ Caused by: org.hibernate.query.sqm.UnknownPathException: Could not resolve attri
 	at org.hibernate.internal.AbstractSharedSessionContract.interpretHql(AbstractSharedSessionContract.java:951) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
 	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:1002) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
 	... 112 common frames omitted
-Caused by: org.hibernate.query.sqm.PathElementException: Could not resolve attribute 'socialAccounts' of 'com.example.projectname.apps.users.model.User'
+Caused by: org.hibernate.query.sqm.PathElementException: Could not resolve attribute 'socialAccounts' of 'com.example.projectname.module.users.model.User'
 	at org.hibernate.query.sqm.SqmPathSource.getSubPathSource(SqmPathSource.java:94) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
 	at org.hibernate.query.hql.internal.QualifiedJoinPathConsumer.createJoin(QualifiedJoinPathConsumer.java:200) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
 	at org.hibernate.query.hql.internal.QualifiedJoinPathConsumer$AttributeJoinDelegate.consumeIdentifier(QualifiedJoinPathConsumer.java:283) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
@@ -1954,7 +1954,7 @@ Caused by: org.hibernate.query.sqm.PathElementException: Could not resolve attri
 2026-04-23T09:14:48.519Z ERROR 20780 --- [project_name_here] [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
 
 java.lang.NullPointerException: Cannot invoke "org.springframework.security.core.Authentication.getPrincipal()" because "authentication" is null
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-7.0.6.jar:7.0.6]
@@ -1965,7 +1965,7 @@ java.lang.NullPointerException: Cannot invoke "org.springframework.security.core
 	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719) ~[spring-aop-7.0.6.jar:7.0.6]
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
 	at org.springframework.security.web.authentication.logout.CompositeLogoutHandler.logout(CompositeLogoutHandler.java:56) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:106) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.4.jar:7.0.4]
@@ -2025,7 +2025,7 @@ java.lang.NullPointerException: Cannot invoke "org.springframework.security.core
 2026-04-23T09:15:02.948Z ERROR 20780 --- [project_name_here] [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
 
 java.lang.NullPointerException: Cannot invoke "org.springframework.security.core.Authentication.getPrincipal()" because "authentication" is null
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-7.0.6.jar:7.0.6]
@@ -2036,7 +2036,7 @@ java.lang.NullPointerException: Cannot invoke "org.springframework.security.core
 	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719) ~[spring-aop-7.0.6.jar:7.0.6]
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
 	at org.springframework.security.web.authentication.logout.CompositeLogoutHandler.logout(CompositeLogoutHandler.java:56) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:106) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.4.jar:7.0.4]
@@ -2096,13 +2096,13 @@ java.lang.NullPointerException: Cannot invoke "org.springframework.security.core
 2026-04-23T09:15:29.649Z ERROR 20780 --- [project_name_here] [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
 
 org.springframework.security.core.userdetails.UsernameNotFoundException: User not found
-	at com.example.projectname.apps.auth.security.services.CustomUserDetailsService.lambda$userDetailsService$1(CustomUserDetailsService.java:25) ~[classes/:na]
+	at com.example.projectname.module.auth.security.services.CustomUserDetailsService.lambda$userDetailsService$1(CustomUserDetailsService.java:25) ~[classes/:na]
 	at java.base/java.util.Optional.orElseThrow(Optional.java:403) ~[na:na]
-	at com.example.projectname.apps.auth.security.services.CustomUserDetailsService.lambda$userDetailsService$0(CustomUserDetailsService.java:25) ~[classes/:na]
-	at com.example.projectname.apps.auth.security.jwt.JwtFilter.doFilterInternal(JwtFilter.java:52) ~[classes/:na]
+	at com.example.projectname.module.auth.security.services.CustomUserDetailsService.lambda$userDetailsService$0(CustomUserDetailsService.java:25) ~[classes/:na]
+	at com.example.projectname.module.auth.security.jwt.JwtFilter.doFilterInternal(JwtFilter.java:52) ~[classes/:na]
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.6.jar:7.0.6]
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.4.jar:7.0.4]
-	at com.example.projectname.apps.auth.security.ratelimit.RateLimitFilter.doFilterInternal(RateLimitFilter.java:51) ~[classes/:na]
+	at com.example.projectname.module.auth.security.ratelimit.RateLimitFilter.doFilterInternal(RateLimitFilter.java:51) ~[classes/:na]
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.6.jar:7.0.6]
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:245) ~[spring-security-web-7.0.4.jar:7.0.4]
@@ -2169,13 +2169,13 @@ org.springframework.security.core.userdetails.UsernameNotFoundException: User no
 2026-04-23T09:15:39.312Z ERROR 20780 --- [project_name_here] [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
 
 org.springframework.security.core.userdetails.UsernameNotFoundException: User not found
-	at com.example.projectname.apps.auth.security.services.CustomUserDetailsService.lambda$userDetailsService$1(CustomUserDetailsService.java:25) ~[classes/:na]
+	at com.example.projectname.module.auth.security.services.CustomUserDetailsService.lambda$userDetailsService$1(CustomUserDetailsService.java:25) ~[classes/:na]
 	at java.base/java.util.Optional.orElseThrow(Optional.java:403) ~[na:na]
-	at com.example.projectname.apps.auth.security.services.CustomUserDetailsService.lambda$userDetailsService$0(CustomUserDetailsService.java:25) ~[classes/:na]
-	at com.example.projectname.apps.auth.security.jwt.JwtFilter.doFilterInternal(JwtFilter.java:52) ~[classes/:na]
+	at com.example.projectname.module.auth.security.services.CustomUserDetailsService.lambda$userDetailsService$0(CustomUserDetailsService.java:25) ~[classes/:na]
+	at com.example.projectname.module.auth.security.jwt.JwtFilter.doFilterInternal(JwtFilter.java:52) ~[classes/:na]
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.6.jar:7.0.6]
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.4.jar:7.0.4]
-	at com.example.projectname.apps.auth.security.ratelimit.RateLimitFilter.doFilterInternal(RateLimitFilter.java:51) ~[classes/:na]
+	at com.example.projectname.module.auth.security.ratelimit.RateLimitFilter.doFilterInternal(RateLimitFilter.java:51) ~[classes/:na]
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.6.jar:7.0.6]
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:245) ~[spring-security-web-7.0.4.jar:7.0.4]
@@ -2242,7 +2242,7 @@ org.springframework.security.core.userdetails.UsernameNotFoundException: User no
 2026-04-23T09:16:20.340Z ERROR 20780 --- [project_name_here] [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
 
 java.lang.NullPointerException: Cannot invoke "org.springframework.security.core.Authentication.getPrincipal()" because "authentication" is null
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-7.0.6.jar:7.0.6]
@@ -2253,7 +2253,7 @@ java.lang.NullPointerException: Cannot invoke "org.springframework.security.core
 	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719) ~[spring-aop-7.0.6.jar:7.0.6]
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
 	at org.springframework.security.web.authentication.logout.CompositeLogoutHandler.logout(CompositeLogoutHandler.java:56) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:106) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.4.jar:7.0.4]
@@ -2313,7 +2313,7 @@ java.lang.NullPointerException: Cannot invoke "org.springframework.security.core
 2026-04-23T09:16:47.314Z ERROR 20780 --- [project_name_here] [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
 
 java.lang.NullPointerException: Cannot invoke "org.springframework.security.core.Authentication.getPrincipal()" because "authentication" is null
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-7.0.6.jar:7.0.6]
@@ -2324,7 +2324,7 @@ java.lang.NullPointerException: Cannot invoke "org.springframework.security.core
 	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719) ~[spring-aop-7.0.6.jar:7.0.6]
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
 	at org.springframework.security.web.authentication.logout.CompositeLogoutHandler.logout(CompositeLogoutHandler.java:56) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:106) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.4.jar:7.0.4]
@@ -2384,7 +2384,7 @@ java.lang.NullPointerException: Cannot invoke "org.springframework.security.core
 2026-04-23T09:17:26.969Z ERROR 20780 --- [project_name_here] [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
 
 java.lang.NullPointerException: Cannot invoke "org.springframework.security.core.Authentication.getPrincipal()" because "authentication" is null
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-7.0.6.jar:7.0.6]
@@ -2395,7 +2395,7 @@ java.lang.NullPointerException: Cannot invoke "org.springframework.security.core
 	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719) ~[spring-aop-7.0.6.jar:7.0.6]
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
 	at org.springframework.security.web.authentication.logout.CompositeLogoutHandler.logout(CompositeLogoutHandler.java:56) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:106) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.4.jar:7.0.4]
@@ -2455,7 +2455,7 @@ java.lang.NullPointerException: Cannot invoke "org.springframework.security.core
 2026-04-23T09:17:46.352Z ERROR 20780 --- [project_name_here] [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
 
 java.lang.NullPointerException: Cannot invoke "org.springframework.security.core.Authentication.getPrincipal()" because "authentication" is null
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-7.0.6.jar:7.0.6]
@@ -2466,7 +2466,7 @@ java.lang.NullPointerException: Cannot invoke "org.springframework.security.core
 	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719) ~[spring-aop-7.0.6.jar:7.0.6]
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
 	at org.springframework.security.web.authentication.logout.CompositeLogoutHandler.logout(CompositeLogoutHandler.java:56) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:106) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.4.jar:7.0.4]
@@ -2627,7 +2627,7 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2026-04-23T09:23:52.507Z ERROR 8716 --- [project_name_here] [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
 
 java.lang.NullPointerException: Cannot invoke "org.springframework.security.core.Authentication.getPrincipal()" because "authentication" is null
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler.logout(CustomLogoutHandler.java:60) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-7.0.6.jar:7.0.6]
@@ -2638,7 +2638,7 @@ java.lang.NullPointerException: Cannot invoke "org.springframework.security.core
 	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.6.jar:7.0.6]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719) ~[spring-aop-7.0.6.jar:7.0.6]
-	at com.example.projectname.apps.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
+	at com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler$$SpringCGLIB$$0.logout(<generated>) ~[classes/:na]
 	at org.springframework.security.web.authentication.logout.CompositeLogoutHandler.logout(CompositeLogoutHandler.java:56) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:106) ~[spring-security-web-7.0.4.jar:7.0.4]
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.4.jar:7.0.4]
@@ -2940,3 +2940,144 @@ java.lang.NullPointerException: Cannot invoke "org.springframework.security.core
 2026-04-23T12:11:07.399Z  INFO 14524 --- [project_name_here] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-04-23T12:11:07.401Z  INFO 14524 --- [project_name_here] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2026-04-23T12:11:07.405Z  INFO 14524 --- [project_name_here] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-01T07:36:52.313Z  INFO 20704 --- [project_name_here] [main] com.example.projectname.ProjectName      : Starting ProjectName using Java 25.0.2 with PID 20704 (C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Start-Packs\authentication\target\classes started by 𝓟𝓔𝓣𝓔𝓡 in C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Start-Packs\authentication)
+2026-05-01T07:36:52.316Z  INFO 20704 --- [project_name_here] [main] com.example.projectname.ProjectName      : No active profile set, falling back to 1 default profile: "default"
+2026-05-01T07:36:53.633Z  INFO 20704 --- [project_name_here] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-01T07:36:53.770Z  INFO 20704 --- [project_name_here] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 121 ms. Found 6 JPA repository interfaces.
+2026-05-01T07:36:54.526Z  INFO 20704 --- [project_name_here] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-05-01T07:36:54.544Z  INFO 20704 --- [project_name_here] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-01T07:36:54.545Z  INFO 20704 --- [project_name_here] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-01T07:36:54.623Z  INFO 20704 --- [project_name_here] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2228 ms
+2026-05-01T07:36:54.875Z  INFO 20704 --- [project_name_here] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-01T07:36:54.967Z  INFO 20704 --- [project_name_here] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-05-01T07:36:55.615Z  INFO 20704 --- [project_name_here] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-01T07:36:55.667Z  INFO 20704 --- [project_name_here] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-01T07:36:55.910Z  INFO 20704 --- [project_name_here] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@34cfdd84
+2026-05-01T07:36:55.912Z  INFO 20704 --- [project_name_here] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-01T07:36:55.982Z  WARN 20704 --- [project_name_here] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-01T07:36:56.028Z  INFO 20704 --- [project_name_here] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.2
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-01T07:36:57.600Z  INFO 20704 --- [project_name_here] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-01T07:36:57.712Z  INFO 20704 --- [project_name_here] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-01T07:36:57.823Z  INFO 20704 --- [project_name_here] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-01T07:36:59.017Z  WARN 20704 --- [project_name_here] [main] o.s.aop.framework.CglibAopProxy          : Public final method [public final void org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService.setRequestEntityConverter(org.springframework.core.convert.converter.Converter)] cannot get proxied via CGLIB, consider removing the final marker or using interface-based JDK proxies.
+2026-05-01T07:36:59.018Z  WARN 20704 --- [project_name_here] [main] o.s.aop.framework.CglibAopProxy          : Public final method [public final void org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService.setRestOperations(org.springframework.web.client.RestOperations)] cannot get proxied via CGLIB, consider removing the final marker or using interface-based JDK proxies.
+2026-05-01T07:36:59.094Z  INFO 20704 --- [project_name_here] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-05-01T07:36:59.632Z  WARN 20704 --- [project_name_here] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-01T07:37:00.494Z  INFO 20704 --- [project_name_here] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-05-01T07:37:00.501Z  INFO 20704 --- [project_name_here] [main] com.example.projectname.ProjectName      : Started ProjectName in 8.959 seconds (process running for 10.0)
+2026-05-01T07:37:00.504Z  WARN 20704 --- [project_name_here] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-05-01T07:37:00.505Z  WARN 20704 --- [project_name_here] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-05-01T07:37:05.156Z  INFO 20704 --- [project_name_here] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-01T07:37:05.157Z  INFO 20704 --- [project_name_here] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-01T07:37:05.158Z  INFO 20704 --- [project_name_here] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-05-01T07:37:06.424Z  INFO 20704 --- [project_name_here] [http-nio-8080-exec-6] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 617 ms
+2026-05-01T07:37:10.683Z  INFO 20704 --- [project_name_here] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-01T07:37:10.697Z  INFO 20704 --- [project_name_here] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-05-01T07:37:10.705Z  INFO 20704 --- [project_name_here] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-01T07:37:10.707Z  INFO 20704 --- [project_name_here] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-01T07:37:10.717Z  INFO 20704 --- [project_name_here] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-01T07:46:22.653Z  INFO 16808 --- [project_name_here] [main] com.example.projectname.ProjectName      : Starting ProjectName using Java 25.0.2 with PID 16808 (C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Start-Packs\authentication\target\classes started by 𝓟𝓔𝓣𝓔𝓡 in C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Start-Packs\authentication)
+2026-05-01T07:46:22.660Z  INFO 16808 --- [project_name_here] [main] com.example.projectname.ProjectName      : No active profile set, falling back to 1 default profile: "default"
+2026-05-01T07:46:23.931Z  INFO 16808 --- [project_name_here] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-01T07:46:24.033Z  INFO 16808 --- [project_name_here] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 94 ms. Found 6 JPA repository interfaces.
+2026-05-01T07:46:24.653Z  INFO 16808 --- [project_name_here] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-05-01T07:46:24.666Z  INFO 16808 --- [project_name_here] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-01T07:46:24.667Z  INFO 16808 --- [project_name_here] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-01T07:46:24.739Z  INFO 16808 --- [project_name_here] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1997 ms
+2026-05-01T07:46:24.944Z  INFO 16808 --- [project_name_here] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-01T07:46:24.997Z  INFO 16808 --- [project_name_here] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-05-01T07:46:25.524Z  INFO 16808 --- [project_name_here] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-01T07:46:25.556Z  INFO 16808 --- [project_name_here] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-01T07:46:25.745Z  INFO 16808 --- [project_name_here] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@349996a6
+2026-05-01T07:46:25.748Z  INFO 16808 --- [project_name_here] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-01T07:46:25.794Z  WARN 16808 --- [project_name_here] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-01T07:46:25.825Z  INFO 16808 --- [project_name_here] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.2
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-01T07:46:27.033Z  INFO 16808 --- [project_name_here] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-01T07:46:27.137Z  INFO 16808 --- [project_name_here] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-01T07:46:27.207Z  INFO 16808 --- [project_name_here] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-01T07:46:28.137Z  WARN 16808 --- [project_name_here] [main] o.s.aop.framework.CglibAopProxy          : Public final method [public final void org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService.setRequestEntityConverter(org.springframework.core.convert.converter.Converter)] cannot get proxied via CGLIB, consider removing the final marker or using interface-based JDK proxies.
+2026-05-01T07:46:28.138Z  WARN 16808 --- [project_name_here] [main] o.s.aop.framework.CglibAopProxy          : Public final method [public final void org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService.setRestOperations(org.springframework.web.client.RestOperations)] cannot get proxied via CGLIB, consider removing the final marker or using interface-based JDK proxies.
+2026-05-01T07:46:28.213Z  INFO 16808 --- [project_name_here] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-05-01T07:46:28.575Z  WARN 16808 --- [project_name_here] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-01T07:46:29.379Z  INFO 16808 --- [project_name_here] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-05-01T07:46:29.386Z  INFO 16808 --- [project_name_here] [main] com.example.projectname.ProjectName      : Started ProjectName in 7.635 seconds (process running for 8.507)
+2026-05-01T07:46:29.389Z  WARN 16808 --- [project_name_here] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-05-01T07:46:29.389Z  WARN 16808 --- [project_name_here] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-05-01T07:46:40.954Z  INFO 16808 --- [project_name_here] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-01T07:46:40.954Z  INFO 16808 --- [project_name_here] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-01T07:46:40.959Z  INFO 16808 --- [project_name_here] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2026-05-01T07:46:42.076Z  INFO 16808 --- [project_name_here] [http-nio-8080-exec-10] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 685 ms
+2026-05-01T07:47:02.041Z  INFO 16808 --- [project_name_here] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-01T07:47:02.058Z  INFO 16808 --- [project_name_here] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-05-01T07:47:02.067Z  INFO 16808 --- [project_name_here] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-01T07:47:02.071Z  INFO 16808 --- [project_name_here] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-01T07:47:02.076Z  INFO 16808 --- [project_name_here] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-01T08:01:07.693Z  INFO 4776 --- [project_name_here] [main] com.example.projectname.ProjectName      : Starting ProjectName using Java 25.0.2 with PID 4776 (C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Start-Packs\authentication\target\classes started by 𝓟𝓔𝓣𝓔𝓡 in C:\MONEYBAGG_STUFF\VSCODE\Java_Programming\SpringBoot\Start-Packs\authentication)
+2026-05-01T08:01:07.697Z  INFO 4776 --- [project_name_here] [main] com.example.projectname.ProjectName      : No active profile set, falling back to 1 default profile: "default"
+2026-05-01T08:01:08.811Z  INFO 4776 --- [project_name_here] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-01T08:01:08.927Z  INFO 4776 --- [project_name_here] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 106 ms. Found 6 JPA repository interfaces.
+2026-05-01T08:01:09.651Z  INFO 4776 --- [project_name_here] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-05-01T08:01:09.665Z  INFO 4776 --- [project_name_here] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-01T08:01:09.665Z  INFO 4776 --- [project_name_here] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-01T08:01:09.756Z  INFO 4776 --- [project_name_here] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1993 ms
+2026-05-01T08:01:09.968Z  INFO 4776 --- [project_name_here] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-01T08:01:10.028Z  INFO 4776 --- [project_name_here] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-05-01T08:01:10.510Z  INFO 4776 --- [project_name_here] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-01T08:01:10.541Z  INFO 4776 --- [project_name_here] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-01T08:01:10.738Z  INFO 4776 --- [project_name_here] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@78aa1753
+2026-05-01T08:01:10.739Z  INFO 4776 --- [project_name_here] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-01T08:01:10.787Z  WARN 4776 --- [project_name_here] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-01T08:01:10.817Z  INFO 4776 --- [project_name_here] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/authentication]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.2
+	Default catalog/schema: authentication/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-01T08:01:12.044Z  INFO 4776 --- [project_name_here] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-01T08:01:12.148Z  INFO 4776 --- [project_name_here] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-01T08:01:12.222Z  INFO 4776 --- [project_name_here] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-01T08:01:13.236Z  WARN 4776 --- [project_name_here] [main] o.s.aop.framework.CglibAopProxy          : Public final method [public final void org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService.setRestOperations(org.springframework.web.client.RestOperations)] cannot get proxied via CGLIB, consider removing the final marker or using interface-based JDK proxies.
+2026-05-01T08:01:13.237Z  WARN 4776 --- [project_name_here] [main] o.s.aop.framework.CglibAopProxy          : Public final method [public final void org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService.setRequestEntityConverter(org.springframework.core.convert.converter.Converter)] cannot get proxied via CGLIB, consider removing the final marker or using interface-based JDK proxies.
+2026-05-01T08:01:13.342Z  INFO 4776 --- [project_name_here] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-05-01T08:01:13.760Z  WARN 4776 --- [project_name_here] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-01T08:01:14.602Z  INFO 4776 --- [project_name_here] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-05-01T08:01:14.610Z  INFO 4776 --- [project_name_here] [main] com.example.projectname.ProjectName      : Started ProjectName in 7.683 seconds (process running for 9.224)
+2026-05-01T08:01:14.614Z  WARN 4776 --- [project_name_here] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-05-01T08:01:14.614Z  WARN 4776 --- [project_name_here] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-05-01T08:01:21.765Z  INFO 4776 --- [project_name_here] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-01T08:01:21.765Z  INFO 4776 --- [project_name_here] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-01T08:01:21.765Z  INFO 4776 --- [project_name_here] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-05-01T08:01:23.047Z  INFO 4776 --- [project_name_here] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 812 ms
+2026-05-01T08:02:10.062Z  INFO 4776 --- [project_name_here] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-01T08:02:10.075Z  INFO 4776 --- [project_name_here] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-05-01T08:02:10.082Z  INFO 4776 --- [project_name_here] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-01T08:02:10.084Z  INFO 4776 --- [project_name_here] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-01T08:02:10.089Z  INFO 4776 --- [project_name_here] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

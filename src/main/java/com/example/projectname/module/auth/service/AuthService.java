@@ -1,27 +1,28 @@
-package com.example.projectname.apps.auth.service;
+package com.example.projectname.module.auth.service;
 
-import com.example.projectname.apps.auth.dto.response.SocialResponse;
-import com.example.projectname.apps.auth.model.SocialAccount;
-import com.example.projectname.apps.auth.service.helper.EmailService;
-import com.example.projectname.apps.users.model.User;
-import com.example.projectname.exception.custom.AuthenticationException;
-import com.example.projectname.apps.audit.dto.response.AuditEventResponse;
-import com.example.projectname.apps.auth.dto.internal.CustomUserPrincipal;
-import com.example.projectname.apps.auth.dto.request.LoginRequest;
-import com.example.projectname.apps.auth.dto.request.ForgotPasswordRequest;
-import com.example.projectname.apps.auth.dto.request.RefreshTokenRequest;
-import com.example.projectname.apps.auth.dto.request.RegisterRequest;
-import com.example.projectname.apps.auth.dto.response.AuthResponse;
-import com.example.projectname.apps.users.dto.response.UserResponse;
-import com.example.projectname.apps.audit.enums.AuditAction;
-import com.example.projectname.apps.auth.model.token.EmailVerificationToken;
-import com.example.projectname.apps.auth.model.token.PasswordResetToken;
-import com.example.projectname.apps.auth.model.token.RefreshToken;
-import com.example.projectname.apps.auth.repository.token.EmailVerificationTokenRepo;
-import com.example.projectname.apps.auth.repository.token.PasswordResetTokenRepo;
-import com.example.projectname.apps.auth.repository.token.RefreshTokenRepo;
-import com.example.projectname.apps.users.repository.UserRepo;
-import com.example.projectname.apps.auth.security.jwt.JwtService;
+import com.example.projectname.module.social.dto.response.SocialResponse;
+import com.example.projectname.module.social.model.SocialAccount;
+import com.example.projectname.module.auth.service.helper.EmailService;
+import com.example.projectname.module.users.mapper.UserMapper;
+import com.example.projectname.module.users.model.User;
+import com.example.projectname.module.auth.exception.AuthenticationException;
+import com.example.projectname.module.audit.dto.response.AuditEventResponse;
+import com.example.projectname.module.shared.dto.response.CustomUserPrincipal;
+import com.example.projectname.module.auth.dto.request.LoginRequest;
+import com.example.projectname.module.auth.dto.request.ForgotPasswordRequest;
+import com.example.projectname.module.auth.dto.request.RefreshTokenRequest;
+import com.example.projectname.module.auth.dto.request.RegisterRequest;
+import com.example.projectname.module.auth.dto.response.AuthResponse;
+import com.example.projectname.module.users.dto.response.UserResponse;
+import com.example.projectname.module.audit.enums.AuditAction;
+import com.example.projectname.module.auth.model.EmailVerificationToken;
+import com.example.projectname.module.auth.model.PasswordResetToken;
+import com.example.projectname.module.auth.model.RefreshToken;
+import com.example.projectname.module.auth.repository.EmailVerificationTokenRepo;
+import com.example.projectname.module.auth.repository.PasswordResetTokenRepo;
+import com.example.projectname.module.auth.repository.RefreshTokenRepo;
+import com.example.projectname.module.users.repository.UserRepo;
+import com.example.projectname.module.shared.security.jwt.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -62,9 +63,10 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final ApplicationEventPublisher eventPublisher;
     private final HttpServletRequest request;
+    private final UserMapper userMapper;
 
     /**
-     * Registers a new baseUser with a hashed password and sends a verification email
+     * Registers a new user with a hashed password and sends a verification email
      */
     @Transactional
     public AuthResponse register(RegisterRequest request) {
@@ -79,7 +81,7 @@ public class AuthService {
         // Set role here if I got a role-based system...
 
         userRepository.save(user);
-        log.info("Successfully registered new baseUser: {}", request.email());
+        log.info("Successfully registered new user: {}", request.email());
         publishAudit(user.getId(), AuditAction.REGISTER);
 
         // 2. Generate the Link & Token & Save in the database
@@ -185,7 +187,7 @@ public class AuthService {
     }
 
     /**
-     * Logs the baseUser out by revoking the specific refresh token.
+     * Logs the User out by revoking the specific refresh token.
      */
     @Transactional
     public void logout(String refreshToken, User user) {
@@ -206,7 +208,7 @@ public class AuthService {
                 .filter(t -> !t.isUsed() && t.getExpiresAt().isAfter(Instant.now()))
                 .orElseThrow(() -> new AuthenticationException("Invalid or expired verification token"));
 
-        // 2. Mark token as used and verify the baseUser
+        // 2. Mark token as used and verify the user
         token.setUsed(true);
         User user = token.getUser();
         user.setEmailVerified(true);
@@ -281,15 +283,13 @@ public class AuthService {
     }
 
     /**
-     * Checks if a user's login mode before allowing for a password reset...
-     * Flags the request if the user didn't user standard login
+     * Request for password reset. An email is sent when triggered. You cannot reset your password if your account is social-only.
      * */
     @Transactional
     public void requestPasswordReset(ForgotPasswordRequest request) {
-        // 1. Account Enumeration Protection: Same response for existing/non-existing emails
         userRepository.findByEmailAndDeletedAtIsNull(request.email()).ifPresentOrElse(user -> {
 
-            // 2. CHECK: Is this a Social-Only user?
+            // 1. CHECK: Is this a Social-Only user?
             if (user.getPassword() == null && !user.getSocialAccounts().isEmpty()) {
                 // Get the first provider (e.g., "GOOGLE")
                 String provider = user.getSocialAccounts().get(0).getProvider();
@@ -300,7 +300,7 @@ public class AuthService {
                 return;
             }
 
-            // 3. Standard Flow: For users who have a password
+            // 2. Standard Flow: For users who have a password
             String rawToken = UUID.randomUUID().toString();
 
             PasswordResetToken resetToken = new PasswordResetToken();
@@ -319,8 +319,7 @@ public class AuthService {
     }
 
     /**
-     * Finalizes the password reset process.
-     * Invalidates all current sessions to ensure account security.
+     *  Reset user password
      */
     @Transactional
     public void resetPassword(String rawToken, String newPassword) {
@@ -346,7 +345,7 @@ public class AuthService {
 
         // This uses the custom query we added to the RefreshTokenRepository
         refreshTokenRepository.revokeAllByUserId(user.getId());
-        log.info("All active sessions revoked for baseUser: {}", user.getEmail());
+        log.info("All active sessions revoked for user: {}", user.getEmail());
 
         // 5. Burn the reset token
         token.setUsed(true);
@@ -355,7 +354,7 @@ public class AuthService {
         passwordResetTokenRepo.save(token);
 
         publishAudit(user.getId(), AuditAction.PASSWORD_CHANGE);
-        log.info("Password successfully reset for baseUser: {}", user.getEmail());
+        log.info("Password successfully reset for user: {}", user.getEmail());
     }
 
     /**
@@ -373,8 +372,8 @@ public class AuthService {
         return new AuthResponse(
                 accessToken,
                 refreshToken,
-                jwtService.extractExpiration(accessToken).getTime() / 1000, // Seconds
-                mapToUserResponse(user)
+                jwtService.extractExpiration(accessToken).getTime() / 1000,
+                userMapper.toDto(user)
         );
     }
 
@@ -387,39 +386,6 @@ public class AuthService {
         rt.setTokenHash(token); // Ideally, further hash this value before storing
         rt.setExpiresAt(Instant.now().plusSeconds(60 * 60 * 24 * 7)); // 7 days
         refreshTokenRepository.save(rt);
-    }
-
-    /**
-     * Maps a User entity to a UserResponse DTO.
-     * Handles the collection of social accounts safely.
-     */
-    private UserResponse mapToUserResponse(User user) {
-        List<SocialResponse> socialResponses = Optional.ofNullable(user.getSocialAccounts())
-                .orElse(Collections.emptyList())
-                .stream()
-                .map(this::mapToSocialResponse)
-                .toList();
-
-        return new UserResponse(
-                user.getId(),
-                user.getEmail(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getRole().name(),
-                user.getAvatarUrl(),
-                user.isEmailVerified(),
-                socialResponses
-        );
-    }
-
-    /**
-     * Maps a single SocialAccount entity to a SocialResponse DTO.
-     */
-    private SocialResponse mapToSocialResponse(SocialAccount socialAccount) {
-        if (socialAccount == null) return null;
-        return new SocialResponse(
-                socialAccount.getProvider()
-        );
     }
 
     /**

@@ -1,6 +1,6 @@
-package com.example.projectname.exception;
+package com.example.projectname.exception.handler;
 
-import com.example.projectname.exception.custom.AuthenticationException;
+import com.example.projectname.module.auth.exception.AuthenticationException;
 import com.example.projectname.module.shared.dto.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

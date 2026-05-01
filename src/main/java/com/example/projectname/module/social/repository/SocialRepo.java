@@ -1,6 +1,6 @@
-package com.example.projectname.module.auth.repository;
+package com.example.projectname.module.social.repository;
 
-import com.example.projectname.module.auth.model.SocialAccount;
+import com.example.projectname.module.social.model.SocialAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

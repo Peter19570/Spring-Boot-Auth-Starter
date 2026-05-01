@@ -1,4 +1,4 @@
-package com.example.projectname.module.auth.dto.response;
+package com.example.projectname.module.social.dto.response;
 
 public record SocialResponse(
         String provider

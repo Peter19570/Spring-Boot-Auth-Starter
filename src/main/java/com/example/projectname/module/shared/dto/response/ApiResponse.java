@@ -1,4 +1,4 @@
-package com.example.projectname.module.auth.dto.internal;
+package com.example.projectname.module.shared.dto.response;
 
 import lombok.NonNull;
 

@@ -1,4 +1,4 @@
-package com.example.projectname.module.common;
+package com.example.projectname.module.shared.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.example.projectname.module.auth.model.token;
+package com.example.projectname.module.auth.model;
 
 import com.example.projectname.module.users.model.User;
 import jakarta.persistence.*;

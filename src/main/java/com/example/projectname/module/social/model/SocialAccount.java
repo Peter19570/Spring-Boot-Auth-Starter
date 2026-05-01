@@ -1,6 +1,6 @@
-package com.example.projectname.module.auth.model;
+package com.example.projectname.module.social.model;
 
-import com.example.projectname.module.common.BaseEntity;
+import com.example.projectname.module.shared.model.BaseEntity;
 import com.example.projectname.module.users.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

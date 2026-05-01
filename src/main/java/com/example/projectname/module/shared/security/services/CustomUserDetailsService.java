@@ -1,6 +1,6 @@
-package com.example.projectname.module.auth.security.services;
+package com.example.projectname.module.shared.security.services;
 
-import com.example.projectname.module.auth.dto.internal.CustomUserPrincipal;
+import com.example.projectname.module.shared.dto.response.CustomUserPrincipal;
 import com.example.projectname.module.users.model.User;
 import com.example.projectname.module.users.repository.UserRepo;
 import lombok.RequiredArgsConstructor;

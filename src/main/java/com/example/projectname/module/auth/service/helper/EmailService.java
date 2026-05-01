@@ -1,6 +1,6 @@
-package com.example.projectname.apps.auth.service.helper;
+package com.example.projectname.module.auth.service.helper;
 
-import com.example.projectname.exception.custom.AuthenticationException;
+import com.example.projectname.module.auth.exception.AuthenticationException;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
-package com.example.projectname.apps.audit.dto.response;
+package com.example.projectname.module.audit.dto.response;
 
-import com.example.projectname.apps.audit.enums.AuditAction;
+import com.example.projectname.module.audit.enums.AuditAction;
 
 import java.util.UUID;
 

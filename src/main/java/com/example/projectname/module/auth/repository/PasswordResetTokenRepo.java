@@ -1,6 +1,6 @@
-package com.example.projectname.module.auth.repository.token;
+package com.example.projectname.module.auth.repository;
 
-import com.example.projectname.module.auth.model.token.PasswordResetToken;
+import com.example.projectname.module.auth.model.PasswordResetToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

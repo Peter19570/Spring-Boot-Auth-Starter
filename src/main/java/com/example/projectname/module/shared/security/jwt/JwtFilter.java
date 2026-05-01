@@ -1,6 +1,6 @@
-package com.example.projectname.module.auth.security.jwt;
+package com.example.projectname.module.shared.security.jwt;
 
-import com.example.projectname.module.auth.dto.internal.CustomUserPrincipal;
+import com.example.projectname.module.shared.dto.response.CustomUserPrincipal;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import jakarta.servlet.FilterChain;

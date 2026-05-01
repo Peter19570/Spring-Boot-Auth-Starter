@@ -1,10 +1,10 @@
-package com.example.projectname.module.auth.security.config;
+package com.example.projectname.module.shared.security.config;
 
-import com.example.projectname.module.auth.security.jwt.JwtFilter;
-import com.example.projectname.module.auth.security.oauth2.CustomLogoutHandler;
-import com.example.projectname.module.auth.security.oauth2.CustomOAuth2UserService;
-import com.example.projectname.module.auth.security.oauth2.OAuth2AuthenticationSuccessHandler;
-import com.example.projectname.module.auth.security.ratelimit.RateLimitFilter;
+import com.example.projectname.module.shared.security.jwt.JwtFilter;
+import com.example.projectname.module.shared.security.oauth2.CustomLogoutHandler;
+import com.example.projectname.module.shared.security.oauth2.CustomOAuth2UserService;
+import com.example.projectname.module.shared.security.oauth2.OAuth2AuthenticationSuccessHandler;
+import com.example.projectname.module.shared.security.ratelimit.RateLimitFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;

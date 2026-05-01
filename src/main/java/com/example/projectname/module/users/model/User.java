@@ -1,7 +1,7 @@
-package com.example.projectname.apps.users.model;
+package com.example.projectname.module.users.model;
 
-import com.example.projectname.apps.auth.base.BaseUser;
-import com.example.projectname.apps.auth.model.SocialAccount;
+import com.example.projectname.module.auth.model.BaseUser;
+import com.example.projectname.module.social.model.SocialAccount;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;

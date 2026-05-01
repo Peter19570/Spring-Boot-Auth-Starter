@@ -1,4 +1,4 @@
-package com.example.projectname.apps.users.enums;
+package com.example.projectname.module.users.enums;
 
 public enum UserRole {
     USER,

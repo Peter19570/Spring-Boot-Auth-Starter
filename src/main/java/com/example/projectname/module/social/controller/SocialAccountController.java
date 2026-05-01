@@ -1,4 +1,4 @@
-package com.example.projectname.module.auth.controller;
+package com.example.projectname.module.social.controller;
 
 import com.example.projectname.module.shared.dto.response.CustomUserPrincipal;
 import com.example.projectname.module.social.service.SocialAccountService;

@@ -1,11 +1,11 @@
-package com.example.projectname.module.auth.security.oauth2;
+package com.example.projectname.module.shared.security.oauth2;
 
 import com.example.projectname.module.audit.dto.response.AuditEventResponse;
-import com.example.projectname.module.auth.dto.internal.CustomUserPrincipal;
+import com.example.projectname.module.shared.dto.response.CustomUserPrincipal;
 import com.example.projectname.module.audit.enums.AuditAction;
-import com.example.projectname.module.auth.model.token.RefreshToken;
-import com.example.projectname.module.auth.repository.token.RefreshTokenRepo;
-import com.example.projectname.module.auth.security.jwt.JwtService;
+import com.example.projectname.module.auth.model.RefreshToken;
+import com.example.projectname.module.auth.repository.RefreshTokenRepo;
+import com.example.projectname.module.shared.security.jwt.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

@@ -1,13 +1,13 @@
-package com.example.projectname.apps.users.service;
+package com.example.projectname.module.users.service;
 
-import com.example.projectname.apps.auth.service.helper.EmailService;
-import com.example.projectname.apps.auth.service.helper.InMemoryOtpService;
-import com.example.projectname.apps.users.model.User;
-import com.example.projectname.apps.users.repository.UserRepo;
-import com.example.projectname.exception.custom.AuthenticationException;
-import com.example.projectname.apps.audit.dto.response.AuditEventResponse;
-import com.example.projectname.apps.audit.enums.AuditAction;
-import com.example.projectname.apps.auth.repository.token.RefreshTokenRepo;
+import com.example.projectname.module.auth.service.helper.EmailService;
+import com.example.projectname.module.auth.service.helper.InMemoryOtpService;
+import com.example.projectname.module.users.model.User;
+import com.example.projectname.module.users.repository.UserRepo;
+import com.example.projectname.module.auth.exception.AuthenticationException;
+import com.example.projectname.module.audit.dto.response.AuditEventResponse;
+import com.example.projectname.module.audit.enums.AuditAction;
+import com.example.projectname.module.auth.repository.RefreshTokenRepo;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

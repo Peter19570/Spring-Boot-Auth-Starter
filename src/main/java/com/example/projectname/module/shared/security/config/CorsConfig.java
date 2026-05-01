@@ -1,4 +1,4 @@
-package com.example.projectname.module.auth.security.config;
+package com.example.projectname.module.shared.security.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

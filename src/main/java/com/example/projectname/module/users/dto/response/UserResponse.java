@@ -1,6 +1,6 @@
-package com.example.projectname.apps.users.dto.response;
+package com.example.projectname.module.users.dto.response;
 
-import com.example.projectname.apps.auth.dto.response.SocialResponse;
+import com.example.projectname.module.social.dto.response.SocialResponse;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,6 +12,5 @@ public record UserResponse(
         String lastName,
         String role,
         String avatarUrl,
-        boolean emailVerified,
-        List<SocialResponse> socialAccounts
+        boolean emailVerified
 ) {}

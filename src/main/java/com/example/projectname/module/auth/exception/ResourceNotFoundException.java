@@ -1,4 +1,4 @@
-package com.example.projectname.exception.custom;
+package com.example.projectname.module.auth.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

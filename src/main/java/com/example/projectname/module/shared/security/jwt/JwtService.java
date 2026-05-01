@@ -1,4 +1,4 @@
-package com.example.projectname.module.auth.security.jwt;
+package com.example.projectname.module.shared.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

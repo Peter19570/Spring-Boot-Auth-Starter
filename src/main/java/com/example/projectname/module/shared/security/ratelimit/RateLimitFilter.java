@@ -1,4 +1,4 @@
-package com.example.projectname.module.auth.security.ratelimit;
+package com.example.projectname.module.shared.security.ratelimit;
 
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
